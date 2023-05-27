@@ -1,4 +1,4 @@
-package com.mycompany.padrinhodobem;
+package padrinhodobem;
 
 import java.sql.Date;
 

@@ -1,4 +1,4 @@
-package com.mycompany.padrinhodobem;
+package padrinhodobem;
 
 public class Crianca {
     private int id;

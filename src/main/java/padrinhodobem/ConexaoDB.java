@@ -10,9 +10,9 @@ import java.sql.DriverManager;
 public class ConexaoDB {
   private static String host = "localhost";
   private static String porta = "3306";
-  private static String db = "db_cursos";
+  private static String db = "padrinho_do_bem_db";
   private static String usuario = "root";
-  private static String senha = "usjt";
+  private static String senha = "mateus123";
 
   public static Connection ObterConexao() throws Exception {
 

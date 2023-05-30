@@ -75,6 +75,11 @@ public class Login extends javax.swing.JFrame {
         });
 
         botaoSair.setText("SAIR");
+        botaoSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoSairActionPerformed(evt);
+            }
+        });
 
         inputCPF.setBackground(new java.awt.Color(153, 153, 255));
         inputCPF.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CPF", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
@@ -200,10 +205,13 @@ public class Login extends javax.swing.JFrame {
 
     private void botaoToggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoToggleActionPerformed
         passwordStatus = !passwordStatus;
-
         inputSenha.setEchoChar((passwordStatus)? (char)0 : '*');
 
     }//GEN-LAST:event_botaoToggleActionPerformed
+
+    private void botaoSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSairActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_botaoSairActionPerformed
 
     private void botaoEntrarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
        
@@ -211,7 +219,6 @@ public class Login extends javax.swing.JFrame {
         var senha_value = String.valueOf(inputSenha.getPassword());
         
         UsuarioDao usuarioDao = new UsuarioDao();
-        
         
        try{
        var response = usuarioDao.getByCPF(cpf_value);      
@@ -236,9 +243,6 @@ public class Login extends javax.swing.JFrame {
         inputSenha.setText(senha);
     }
 
-    private void botaoSairActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

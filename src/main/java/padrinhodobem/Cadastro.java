@@ -63,7 +63,7 @@ public class Cadastro extends javax.swing.JFrame {
         tituloModal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tituloModal.setText("TELA DE CADASTRO");
 
-        botaoCadastro.setText("CADASTRO");
+        botaoCadastro.setText("CADASTRAR");
         botaoCadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoCadastroActionPerformed(evt);
@@ -71,6 +71,11 @@ public class Cadastro extends javax.swing.JFrame {
         });
 
         botaoSair.setText("SAIR");
+        botaoSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoSairActionPerformed(evt);
+            }
+        });
 
         inputNome.setBackground(new java.awt.Color(153, 153, 255));
         inputNome.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
@@ -184,6 +189,10 @@ public class Cadastro extends javax.swing.JFrame {
         inputSenha.setEchoChar((passwordStatus)? (char)0 : '*');
 
     }//GEN-LAST:event_botaoToggleActionPerformed
+
+    private void botaoSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSairActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_botaoSairActionPerformed
 
     
     private void botaoCadastroActionPerformed(java.awt.event.ActionEvent evt){

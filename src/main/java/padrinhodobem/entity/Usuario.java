@@ -9,7 +9,6 @@ public class Usuario {
     private boolean userType;
     // adicionar o tipo
 
-        
     public Usuario(String email, String cpf, String nome, String password) {
         this.email = email;
         this.cpf = cpf;
@@ -61,13 +60,13 @@ public class Usuario {
     public String getSenha() {
         return senha;
     }
-    
+
     public boolean getIsAdmin() {
         return userType;
     }
-    
-    public boolean validaSenha(String senha){
-      return this.senha.equals(senha);        
+
+    public boolean validaSenha(String senha) {
+        return this.senha.equals(senha);
     }
 
     @Override

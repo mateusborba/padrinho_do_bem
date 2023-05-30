@@ -22,9 +22,9 @@ import padrinhodobem.entity.Usuario;
  * @author herbert
  */
 public class UserDao implements DaoInterface<Usuario> {
-  
+
   private static final Logger LOG = Logger.getLogger(UserDao.class.getName());
-  
+
   @Override
   public Optional<Usuario> get(int id) throws Exception {
 
@@ -45,8 +45,7 @@ public class UserDao implements DaoInterface<Usuario> {
             rs.getString("cpf"),
             rs.getString("nome"),
             rs.getString("senha"),
-            rs.getBoolean("type")
-        ));
+            rs.getBoolean("type")));
       }
     }
   }
@@ -98,10 +97,9 @@ public class UserDao implements DaoInterface<Usuario> {
             rs.getString("cpf"),
             rs.getString("nome"),
             rs.getString("senha"),
-            rs.getBoolean("type")
-        ));
+            rs.getBoolean("type")));
       }
-    
+
       System.out.println("Lista de usuarios: ");
 
       System.out.println(UsersList);
@@ -111,52 +109,50 @@ public class UserDao implements DaoInterface<Usuario> {
 
   }
 
-    @Override
-    public void save(Usuario t) throws Exception {
-    
-        String createSql = "INSERT INTO `usuario`(cpf, nome, email, senha) VALUES (?,?,?,?);";
-        String updateSql = "REPLACE INTO `usuario` (id, cpf, nome, email, senha) VALUES (?,?,?,?,?)";
-     
-      
-        try (Connection conn = DbConnection.ObterConexao()) {
+  @Override
+  public void save(Usuario t) throws Exception {
 
-            PreparedStatement ps;
-            
-            int currentId = t.getId();
-            int i = 1;
+    String createSql = "INSERT INTO `usuario`(cpf, nome, email, senha) VALUES (?,?,?,?);";
+    String updateSql = "REPLACE INTO `usuario` (id, cpf, nome, email, senha) VALUES (?,?,?,?,?)";
 
-            
-            if(currentId == 0) ps = conn.prepareStatement(createSql, Statement.RETURN_GENERATED_KEYS);
-            else {
-                ps = conn.prepareStatement(updateSql);
-                ps.setInt(i++, currentId);
+    try (Connection conn = DbConnection.ObterConexao()) {
+
+      PreparedStatement ps;
+
+      int currentId = t.getId();
+      int i = 1;
+
+      if (currentId == 0)
+        ps = conn.prepareStatement(createSql, Statement.RETURN_GENERATED_KEYS);
+      else {
+        ps = conn.prepareStatement(updateSql);
+        ps.setInt(i++, currentId);
+      }
+
+      ps.setString(i++, t.getCpf());
+      ps.setString(i++, t.getNome());
+      ps.setString(i++, t.getEmail());
+      ps.setString(i++, t.getSenha());
+
+      int affectedRows = ps.executeUpdate();
+
+      if (currentId == 0) {
+        if (affectedRows == 0) {
+          System.out.println("No rows inserted.");
+        } else {
+          try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+            if (generatedKeys.next()) {
+              int insertedId = generatedKeys.getInt(1);
+              System.out.println("Inserted ID: " + insertedId);
             }
-            
-            ps.setString(i++, t.getCpf());
-            ps.setString(i++, t.getNome());
-            ps.setString(i++, t.getEmail());
-            ps.setString(i++, t.getSenha());
-            
-            int affectedRows = ps.executeUpdate();
-            
-            if(currentId == 0){
-                if (affectedRows == 0) {
-                    System.out.println("No rows inserted.");
-                } else {
-                    try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
-                        if (generatedKeys.next()) {
-                            int insertedId = generatedKeys.getInt(1);
-                            System.out.println("Inserted ID: " + insertedId);
-                        }
-                    }
-                }
-            }else {
-                ps.execute();
-            }
-            
+          }
+        }
+      } else {
+        ps.execute();
+      }
+
     }
-      
-      
+
   }
 
   @Override
@@ -165,17 +161,17 @@ public class UserDao implements DaoInterface<Usuario> {
   }
 
   @Override
-  public void delete(Usuario t) throws Exception{
+  public void delete(Usuario t) throws Exception {
     String sql = "DELETE FROM usuario WHERE id = ?";
     try (Connection conn = DbConnection.ObterConexao()) {
-        
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, t.getId());
-            
-            ps.execute();
+
+      PreparedStatement ps = conn.prepareStatement(sql);
+      ps.setInt(1, t.getId());
+
+      ps.execute();
 
     }
-    
+
   }
 
 }

@@ -6,8 +6,7 @@ public class Necessidade {
     private int id;
     private String tipo;
     private int crianca_id;
-    
-    
+
     public Necessidade(String tipo, int crianca_id) {
         this.tipo = tipo;
         this.crianca_id = crianca_id;

@@ -116,7 +116,7 @@ public class Login extends javax.swing.JFrame {
         jPanelPassword.add(jPanelPassProgress);
         jPanelPassword.add(filler1);
 
-        botaoToggle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/padrinhodobem/eye.png"))); // NOI18N
+        botaoToggle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/padrinhodobem/icon/eye.png"))); // NOI18N
         botaoToggle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoToggleActionPerformed(evt);

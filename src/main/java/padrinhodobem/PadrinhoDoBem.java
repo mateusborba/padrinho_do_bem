@@ -4,6 +4,8 @@
 
 package padrinhodobem;
 
+import padrinhodobem.view.Login;
+
 /**
  *
  * @author infra
@@ -11,6 +13,7 @@ package padrinhodobem;
 public class PadrinhoDoBem {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Login login = new Login();
+        login.setVisible(true);
     }
 }

@@ -65,6 +65,10 @@ public class Usuario {
     public boolean getIsAdmin() {
         return userType;
     }
+    
+    public boolean validaSenha(String senha){
+      return this.senha.equals(senha);        
+    }
 
     @Override
     public String toString() {

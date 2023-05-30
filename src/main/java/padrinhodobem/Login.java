@@ -4,11 +4,16 @@
  */
 package padrinhodobem;
 
+import java.awt.event.ActionEvent;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author mundo
  */
 public class Login extends javax.swing.JFrame {
+    
+     private boolean passwordStatus = false;
 
     /**
      * Creates new form Login
@@ -35,7 +40,12 @@ public class Login extends javax.swing.JFrame {
         botaoCadastro = new javax.swing.JButton();
         botaoSair = new javax.swing.JButton();
         inputCPF = new javax.swing.JTextField();
-        inputSenha = new javax.swing.JTextField();
+        jPanelPassword = new javax.swing.JPanel();
+        jPanelPassProgress = new javax.swing.JPanel();
+        inputSenha = new javax.swing.JPasswordField();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 32767));
+        botaoToggle = new javax.swing.JButton();
+        jProgressBar1 = new javax.swing.JProgressBar();
 
         jTextField1.setText("jTextField1");
 
@@ -75,15 +85,50 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        jPanelPassword.setBackground(new java.awt.Color(153, 153, 255));
+        jPanelPassword.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Senha", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanelPassword.setLayout(new javax.swing.BoxLayout(jPanelPassword, javax.swing.BoxLayout.LINE_AXIS));
+
+        jPanelPassProgress.setBackground(new java.awt.Color(153, 153, 255));
+        jPanelPassProgress.setLayout(new javax.swing.BoxLayout(jPanelPassProgress, javax.swing.BoxLayout.PAGE_AXIS));
+
         inputSenha.setBackground(new java.awt.Color(153, 153, 255));
-        inputSenha.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Senha", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        inputSenha.setToolTipText("");
+        inputSenha.setBorder(null);
+        inputSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputSenhaActionPerformed(evt);
+            }
+        });
+        inputSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                inputSenhaKeyTyped(evt);
+            }
+        });
+        jPanelPassProgress.add(inputSenha);
+
+        jPanelPassword.add(jPanelPassProgress);
+        jPanelPassword.add(filler1);
+
+        botaoToggle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/padrinhodobem/eye.png"))); // NOI18N
+        botaoToggle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoToggleActionPerformed(evt);
+            }
+        });
+        jPanelPassword.add(botaoToggle);
+
+        jProgressBar1.setForeground(new java.awt.Color(255, 102, 102));
+        jProgressBar1.setValue(70);
+        jProgressBar1.setBorder(null);
+        jProgressBar1.setBorderPainted(false);
+        jProgressBar1.setMinimumSize(new java.awt.Dimension(10, 2));
+        jProgressBar1.setPreferredSize(new java.awt.Dimension(146, 10));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(inputCPF)
-            .addComponent(inputSenha)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(157, Short.MAX_VALUE)
                 .addComponent(botaoCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -92,26 +137,39 @@ public class Login extends javax.swing.JFrame {
                 .addGap(0, 139, Short.MAX_VALUE))
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(inputCPF))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(botaoEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanelPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 52, Short.MAX_VALUE)
-                .addComponent(inputCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 50, Short.MAX_VALUE)
-                .addComponent(inputSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 35, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(inputCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(jPanelPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(botaoEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 35, Short.MAX_VALUE)
+                .addGap(0, 51, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoSair, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 24, Short.MAX_VALUE))
+                .addGap(0, 19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -132,11 +190,53 @@ public class Login extends javax.swing.JFrame {
       // TODO add your handling code here:
     }//GEN-LAST:event_inputCPFActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_jButton1ActionPerformed
+    private void inputSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputSenhaActionPerformed
+        jProgressBar1.setValue(inputSenha.getPassword().length);
+    }//GEN-LAST:event_inputSenhaActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
+    private void inputSenhaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputSenhaKeyTyped
+        jProgressBar1.setValue(inputSenha.getPassword().length * 11);
+    }//GEN-LAST:event_inputSenhaKeyTyped
+
+    private void botaoToggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoToggleActionPerformed
+        passwordStatus = !passwordStatus;
+
+        inputSenha.setEchoChar((passwordStatus)? (char)0 : '*');
+
+    }//GEN-LAST:event_botaoToggleActionPerformed
+
+    private void botaoEntrarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
+       
+        var cpf_value = inputCPF.getText();
+        var senha_value = String.valueOf(inputSenha.getPassword());
+        
+        UsuarioDao usuarioDao = new UsuarioDao();
+        
+        
+       try{
+       var response = usuarioDao.getByCPF(cpf_value);      
+       var usuarioSenha = response.get().validaSenha(senha_value);
+       if(usuarioSenha){
+       JOptionPane.showMessageDialog(null, "login realizado");}
+       }
+       catch(Exception e) {
+         JOptionPane.showMessageDialog(null, "Não foi possível realizar o login", "Erro no login", JOptionPane.ERROR_MESSAGE);
+       }
+           
+    }// GEN-LAST:event_jButton1ActionPerformed
+    
+    private void botaoCadastroActionPerformed(java.awt.event.ActionEvent evt){
+        Cadastro cadastro = new Cadastro();
+        cadastro.setVisible(true);
+        this.dispose();
+    }
+    
+    public void setCredencial(String cpf, String senha){
+        inputCPF.setText(cpf);
+        inputSenha.setText(senha);
+    }
+
+    private void botaoSairActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_jButton2ActionPerformed
 
@@ -183,11 +283,16 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton botaoCadastro;
     private javax.swing.JButton botaoEntrar;
     private javax.swing.JButton botaoSair;
+    private javax.swing.JButton botaoToggle;
+    private javax.swing.Box.Filler filler1;
     private javax.swing.JTextField inputCPF;
-    private javax.swing.JTextField inputSenha;
+    private javax.swing.JPasswordField inputSenha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanelPassProgress;
+    private javax.swing.JPanel jPanelPassword;
+    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

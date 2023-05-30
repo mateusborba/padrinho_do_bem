@@ -213,8 +213,12 @@ public class Cadastro extends javax.swing.JFrame {
  
         UsuarioDao db =  new UsuarioDao();       
         try {
+            Login login = new Login();
             db.save(novoUsuario);
             JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
+            login.setCredencial(novoCpf, novaSenha);
+            login.setVisible(true);
+            this.dispose();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao salvar os dados do usuario no banco de dados!", "Erro", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(UsuarioEditor.class.getName()).log(Level.SEVERE, null, ex);

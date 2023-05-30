@@ -9,12 +9,16 @@ package padrinhodobem;
  * @author herbert
  */
 public class DashboardUsuario extends javax.swing.JFrame {
+    
 
     /**
      * Creates new form DashboardUsuario
+     * 
+     * 
      */
     public DashboardUsuario() {
         initComponents();
+        this.setTitle("Usuários");
     }
 
     /**
@@ -26,26 +30,35 @@ public class DashboardUsuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTabbedPane1 = new javax.swing.JTabbedPane();
         usuarioCrud1 = new padrinhodobem.UsuarioCrud();
+        usuarioCrud2 = new padrinhodobem.UsuarioCrud();
+        usuarioCrud3 = new padrinhodobem.UsuarioCrud();
+        usuarioCrud4 = new padrinhodobem.UsuarioCrud();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jTabbedPane1.setToolTipText("");
+        jTabbedPane1.addTab("Usuários", usuarioCrud1);
+        jTabbedPane1.addTab("Crianças", usuarioCrud2);
+        jTabbedPane1.addTab("Necessidades", usuarioCrud3);
+        jTabbedPane1.addTab("Apadrinhamentos", usuarioCrud4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(usuarioCrud1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(usuarioCrud1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
         );
+
+        jTabbedPane1.getAccessibleContext().setAccessibleName("Usuários");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -86,6 +99,10 @@ public class DashboardUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTabbedPane jTabbedPane1;
     private padrinhodobem.UsuarioCrud usuarioCrud1;
+    private padrinhodobem.UsuarioCrud usuarioCrud2;
+    private padrinhodobem.UsuarioCrud usuarioCrud3;
+    private padrinhodobem.UsuarioCrud usuarioCrud4;
     // End of variables declaration//GEN-END:variables
 }

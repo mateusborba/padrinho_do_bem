@@ -5,9 +5,14 @@ import java.util.regex.Pattern;
 
 public class ValidadorCPF {
 
+    public static String sanitizeCPF(String cpf) {
+        return cpf.replaceAll("[^0-9]", "");
+    }
+    
+    
     public static boolean validarCPF(String cpf) {
         // Remove a pontuação da string de CPF
-        cpf = cpf.replaceAll("[^0-9]", "");
+        cpf = sanitizeCPF(cpf);
         
         // Verifica se o CPF possui 11 dígitos
         if (cpf.length() != 11) {

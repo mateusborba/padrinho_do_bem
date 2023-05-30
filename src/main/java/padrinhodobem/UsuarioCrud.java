@@ -12,6 +12,7 @@ import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
@@ -170,6 +171,11 @@ public class UsuarioCrud extends javax.swing.JPanel {
 
         jButtonEditUser.setText("Editar");
         jButtonEditUser.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonEditUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditUserActionPerformed(evt);
+            }
+        });
 
         jButtonDeleteUser.setText("Deletar");
         jButtonDeleteUser.addActionListener(new java.awt.event.ActionListener() {
@@ -254,16 +260,21 @@ public class UsuarioCrud extends javax.swing.JPanel {
         newUser.setVisible(true);
         newUser.requestFocus();
         
-        
-        
-
-        
         topFrame.setEnabled(false);
         
     }//GEN-LAST:event_jButtonAddUserActionPerformed
 
     private void jButtonDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteUserActionPerformed
-        // TODO add your handling code here:
+        UsuarioDao db = new UsuarioDao();
+        
+        try {
+            db.delete(selectedUser);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao deletar o usuario", "Erro", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(UsuarioCrud.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        updateTableData();
     }//GEN-LAST:event_jButtonDeleteUserActionPerformed
 
     private void jTable_usuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_usuariosMouseClicked
@@ -294,6 +305,25 @@ public class UsuarioCrud extends javax.swing.JPanel {
     private void jButtonAddUser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddUser1ActionPerformed
         updateTableData();
     }//GEN-LAST:event_jButtonAddUser1ActionPerformed
+
+    private void jButtonEditUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditUserActionPerformed
+        UsuarioEditor newUser = new UsuarioEditor(this.selectedUser);
+        JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+
+        newUser.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        newUser.addWindowListener(new WindowAdapter(){
+            public void windowClosed(WindowEvent e){
+                topFrame.setEnabled(true);
+                updateTableData();
+            }
+        });
+        
+        newUser.setVisible(true);
+        newUser.requestFocus();
+        
+        topFrame.setEnabled(false);
+    }//GEN-LAST:event_jButtonEditUserActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

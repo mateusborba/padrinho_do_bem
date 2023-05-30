@@ -111,30 +111,46 @@ public class UsuarioDao implements Dao<Usuario> {
     @Override
     public void save(Usuario t) throws Exception {
     
-        String sql = "INSERT INTO `usuario`(cpf, nome, email, senha) VALUES (?,?,?,?);";
+        String createSql = "INSERT INTO `usuario`(cpf, nome, email, senha) VALUES (?,?,?,?);";
+        String updateSql = "REPLACE INTO `usuario` (id, cpf, nome, email, senha) VALUES (?,?,?,?,?)";
      
       
         try (Connection conn = ConexaoDB.ObterConexao()) {
 
-            PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-      
-            ps.setString(1, t.getCpf());
-            ps.setString(2, t.getNome());
-            ps.setString(3, t.getEmail());
-            ps.setString(4, t.getSenha());
+            PreparedStatement ps;
+            
+            int currentId = t.getId();
+            int i = 1;
+
+            
+            if(currentId == 0) ps = conn.prepareStatement(createSql, Statement.RETURN_GENERATED_KEYS);
+            else {
+                ps = conn.prepareStatement(updateSql);
+                ps.setInt(i++, currentId);
+            }
+            
+            ps.setString(i++, t.getCpf());
+            ps.setString(i++, t.getNome());
+            ps.setString(i++, t.getEmail());
+            ps.setString(i++, t.getSenha());
             
             int affectedRows = ps.executeUpdate();
             
-            if (affectedRows == 0) {
-                System.out.println("No rows inserted.");
-            } else {
-                try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
-                    if (generatedKeys.next()) {
-                        int insertedId = generatedKeys.getInt(1);
-                        System.out.println("Inserted ID: " + insertedId);
+            if(currentId == 0){
+                if (affectedRows == 0) {
+                    System.out.println("No rows inserted.");
+                } else {
+                    try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+                        if (generatedKeys.next()) {
+                            int insertedId = generatedKeys.getInt(1);
+                            System.out.println("Inserted ID: " + insertedId);
+                        }
                     }
                 }
+            }else {
+                ps.execute();
             }
+            
     }
       
       
@@ -146,8 +162,17 @@ public class UsuarioDao implements Dao<Usuario> {
   }
 
   @Override
-  public void delete(Usuario t) {
-    throw new UnsupportedOperationException("Not supported yet.");
+  public void delete(Usuario t) throws Exception{
+    String sql = "DELETE FROM usuario WHERE id = ?";
+    try (Connection conn = ConexaoDB.ObterConexao()) {
+        
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, t.getId());
+            
+            ps.execute();
+
+    }
+    
   }
 
 

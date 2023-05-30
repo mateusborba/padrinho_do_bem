@@ -245,7 +245,7 @@ public class UsuarioCrud extends javax.swing.JPanel {
         newUser.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
         newUser.addWindowListener(new WindowAdapter(){
-            public void windowClosing(WindowEvent e){
+            public void windowClosed(WindowEvent e){
                 topFrame.setEnabled(true);
                 updateTableData();
             }

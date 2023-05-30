@@ -5,6 +5,8 @@
 package padrinhodobem;
 
 import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import padrinhodobem.utils.ValidadorCPF;
 import padrinhodobem.utils.ValidadorEmail;
@@ -18,6 +20,7 @@ public class UsuarioEditor extends javax.swing.JFrame {
     private boolean passwordStatus = false;
     
     private Usuario user;
+    
     
     /**
      * Cria um novo usuario
@@ -286,7 +289,12 @@ public class UsuarioEditor extends javax.swing.JFrame {
         }
  
         UsuarioDao db =  new UsuarioDao();       
-        db.save(this.user);
+        try {
+            db.save(this.user);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao salvar os dados do usuario no banco de dados!", "Erro", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(UsuarioEditor.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         this.dispose();
     }//GEN-LAST:event_jButtonSaveActionPerformed

@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  *
  * @author herbert
  */
-public class UsuarioDao implements Dao {
+public class UsuarioDao implements Dao<Usuario> {
   
   private static final Logger LOG = Logger.getLogger(UsuarioDao.class.getName());
   
@@ -109,15 +109,7 @@ public class UsuarioDao implements Dao {
   }
 
     @Override
-    public void save(Object t) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-  
-  
-  
-    @Override
-    public void saver(Usuario t) throws Exception {
+    public void save(Usuario t) throws Exception {
     
         String sql = "INSERT INTO `usuario`(cpf, nome, email, senha) VALUES (?,?,?,?);";
      
@@ -130,40 +122,31 @@ public class UsuarioDao implements Dao {
             ps.setString(2, t.getNome());
             ps.setString(3, t.getEmail());
             ps.setString(4, t.getSenha());
-
-
-
-
-            ResultSet rs = ps.executeQuery();
-
-      while (rs.next()) {
-        UsersList.add(new Usuario(
-            rs.getInt("id"),
-            rs.getString("email"),
-            rs.getString("cpf"),
-            rs.getString("nome"),
-            rs.getString("senha"),
-            rs.getBoolean("type")
-        ));
-      }
-    
-      System.out.println("Lista de usuarios: ");
-
-      System.out.println(UsersList);
-
-      return UsersList;
+            
+            int affectedRows = ps.executeUpdate();
+            
+            if (affectedRows == 0) {
+                System.out.println("No rows inserted.");
+            } else {
+                try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        int insertedId = generatedKeys.getInt(1);
+                        System.out.println("Inserted ID: " + insertedId);
+                    }
+                }
+            }
     }
       
       
   }
 
   @Override
-  public void update(Object t, String[] params) {
+  public void update(Usuario t, String[] params) {
     throw new UnsupportedOperationException("Not supported yet.");
   }
 
   @Override
-  public void delete(Object t) {
+  public void delete(Usuario t) {
     throw new UnsupportedOperationException("Not supported yet.");
   }
 

@@ -1,4 +1,4 @@
-package padrinhodobem;
+package padrinhodobem.entity;
 
 import java.sql.Date;
 

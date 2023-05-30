@@ -1,4 +1,4 @@
-package padrinhodobem;
+package padrinhodobem.entity;
 
 public class Crianca {
     private int id;

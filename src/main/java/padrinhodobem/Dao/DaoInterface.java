@@ -1,4 +1,4 @@
-package padrinhodobem;
+package padrinhodobem.Dao;
 
 import java.util.List;
 import java.util.Optional;
@@ -7,7 +7,7 @@ import java.util.Optional;
  *
  * @author herbert
  */
-public interface Dao<T> {
+public interface DaoInterface<T> {
 
   Optional<T> get(int id) throws Exception;
 

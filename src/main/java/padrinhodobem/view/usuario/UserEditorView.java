@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package padrinhodobem;
+package padrinhodobem.view.usuario;
 
+import padrinhodobem.entity.Usuario;
+import padrinhodobem.Dao.UserDao;
 import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,7 +17,7 @@ import padrinhodobem.utils.ValidadorEmail;
  *
  * @author herbert
  */
-public class UsuarioEditor extends javax.swing.JFrame {
+public class UserEditorView extends javax.swing.JFrame {
 
     private boolean passwordStatus = false;
     
@@ -25,7 +27,7 @@ public class UsuarioEditor extends javax.swing.JFrame {
     /**
      * Cria um novo usuario
      */
-    public UsuarioEditor() {   
+    public UserEditorView() {   
         initComponents();
         this.setTitle("Novo usuario");
         jLabel1.setText("Novo usuario");
@@ -36,7 +38,7 @@ public class UsuarioEditor extends javax.swing.JFrame {
     /**
      * Edita um usuario existente
      */
-    public UsuarioEditor(Usuario user) {
+    public UserEditorView(Usuario user) {
         this.user = user;
         initComponents();
         this.setTitle("Editar usuario");
@@ -288,12 +290,12 @@ public class UsuarioEditor extends javax.swing.JFrame {
             }
         }
  
-        UsuarioDao db =  new UsuarioDao();       
+        UserDao db =  new UserDao();       
         try {
             db.save(this.user);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao salvar os dados do usuario no banco de dados!", "Erro", JOptionPane.ERROR_MESSAGE);
-            Logger.getLogger(UsuarioEditor.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserEditorView.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         this.dispose();

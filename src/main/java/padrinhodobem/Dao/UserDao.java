@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package padrinhodobem;
+package padrinhodobem.Dao;
 
+import padrinhodobem.Dao.DbConnection;
+import padrinhodobem.Dao.DaoInterface;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,21 +15,22 @@ import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import padrinhodobem.entity.Usuario;
 
 /**
  *
  * @author herbert
  */
-public class UsuarioDao implements Dao<Usuario> {
+public class UserDao implements DaoInterface<Usuario> {
   
-  private static final Logger LOG = Logger.getLogger(UsuarioDao.class.getName());
+  private static final Logger LOG = Logger.getLogger(UserDao.class.getName());
   
   @Override
   public Optional<Usuario> get(int id) throws Exception {
 
     String sql = "SELECT * FROM `usuario` WHERE id = ?";
 
-    try (Connection conn = ConexaoDB.ObterConexao()) {
+    try (Connection conn = DbConnection.ObterConexao()) {
 
       PreparedStatement ps = conn.prepareStatement(sql);
 
@@ -52,7 +55,7 @@ public class UsuarioDao implements Dao<Usuario> {
 
     String sql = "SELECT * FROM `usuario` WHERE cpf = ?";
 
-    try (Connection conn = ConexaoDB.ObterConexao()) {
+    try (Connection conn = DbConnection.ObterConexao()) {
 
       PreparedStatement ps = conn.prepareStatement(sql);
 
@@ -82,7 +85,7 @@ public class UsuarioDao implements Dao<Usuario> {
 
     String sql = "SELECT * FROM `usuario`;";
 
-    try (Connection conn = ConexaoDB.ObterConexao()) {
+    try (Connection conn = DbConnection.ObterConexao()) {
 
       PreparedStatement ps = conn.prepareStatement(sql);
 
@@ -115,7 +118,7 @@ public class UsuarioDao implements Dao<Usuario> {
         String updateSql = "REPLACE INTO `usuario` (id, cpf, nome, email, senha) VALUES (?,?,?,?,?)";
      
       
-        try (Connection conn = ConexaoDB.ObterConexao()) {
+        try (Connection conn = DbConnection.ObterConexao()) {
 
             PreparedStatement ps;
             
@@ -164,7 +167,7 @@ public class UsuarioDao implements Dao<Usuario> {
   @Override
   public void delete(Usuario t) throws Exception{
     String sql = "DELETE FROM usuario WHERE id = ?";
-    try (Connection conn = ConexaoDB.ObterConexao()) {
+    try (Connection conn = DbConnection.ObterConexao()) {
         
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, t.getId());
@@ -173,21 +176,6 @@ public class UsuarioDao implements Dao<Usuario> {
 
     }
     
-  }
-
-
-  // Main de test da conexão com o banco de dados, ToDo Implementar um método de teste da classe 
-  public static void main(String[] args) {
-    try {
-      var userDao = new UsuarioDao();
-
-      var listaDeUsuarios = userDao.getAll();
-
-      LOG.log(Level.SEVERE, "Lista de Usuarios do sistema", listaDeUsuarios);
-    } catch (Exception ex) {
-      Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, ex);
-    }
-
   }
 
 }

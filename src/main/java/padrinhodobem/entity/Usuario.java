@@ -1,4 +1,4 @@
-package padrinhodobem;
+package padrinhodobem.entity;
 
 public class Usuario {
     private int id;

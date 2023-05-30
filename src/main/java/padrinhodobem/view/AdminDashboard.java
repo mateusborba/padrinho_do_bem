@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package padrinhodobem;
+package padrinhodobem.view;
 
 /**
  *
  * @author herbert
  */
-public class DashboardUsuario extends javax.swing.JFrame {
+public class AdminDashboard extends javax.swing.JFrame {
     
 
     /**
@@ -16,7 +16,7 @@ public class DashboardUsuario extends javax.swing.JFrame {
      * 
      * 
      */
-    public DashboardUsuario() {
+    public AdminDashboard() {
         initComponents();
         this.setTitle("Usuários");
     }
@@ -31,13 +31,12 @@ public class DashboardUsuario extends javax.swing.JFrame {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        usuarioCrud1 = new padrinhodobem.UsuarioCrud();
-        usuarioCrud2 = new padrinhodobem.UsuarioCrud();
-        usuarioCrud3 = new padrinhodobem.UsuarioCrud();
-        usuarioCrud4 = new padrinhodobem.UsuarioCrud();
+        usuarioCrud1 = new padrinhodobem.view.usuario.UserDashboardView();
+        usuarioCrud2 = new padrinhodobem.view.usuario.UserDashboardView();
+        usuarioCrud3 = new padrinhodobem.view.usuario.UserDashboardView();
+        usuarioCrud4 = new padrinhodobem.view.usuario.UserDashboardView();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
         jTabbedPane1.setToolTipText("");
         jTabbedPane1.addTab("Usuários", usuarioCrud1);
@@ -81,29 +80,30 @@ public class DashboardUsuario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DashboardUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DashboardUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DashboardUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DashboardUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DashboardUsuario().setVisible(true);
+                new AdminDashboard().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane jTabbedPane1;
-    private padrinhodobem.UsuarioCrud usuarioCrud1;
-    private padrinhodobem.UsuarioCrud usuarioCrud2;
-    private padrinhodobem.UsuarioCrud usuarioCrud3;
-    private padrinhodobem.UsuarioCrud usuarioCrud4;
+    private padrinhodobem.view.usuario.UserDashboardView usuarioCrud1;
+    private padrinhodobem.view.usuario.UserDashboardView usuarioCrud2;
+    private padrinhodobem.view.usuario.UserDashboardView usuarioCrud3;
+    private padrinhodobem.view.usuario.UserDashboardView usuarioCrud4;
     // End of variables declaration//GEN-END:variables
 }

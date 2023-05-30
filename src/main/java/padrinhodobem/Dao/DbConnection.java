@@ -1,4 +1,4 @@
-package padrinhodobem;
+package padrinhodobem.Dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,7 +7,7 @@ import java.sql.DriverManager;
  *
  * @author herbert
  */
-public class ConexaoDB {
+public class DbConnection {
   private static String host = "localhost";
   private static String porta = "3306";
   private static String db = "padrinho_do_bem_db";

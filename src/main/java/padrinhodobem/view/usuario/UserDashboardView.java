@@ -2,8 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package padrinhodobem;
+package padrinhodobem.view.usuario;
 
+import padrinhodobem.entity.Usuario;
+import padrinhodobem.Dao.UserDao;
+import padrinhodobem.Dao.DaoInterface;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -20,12 +23,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author herbert
  */
-public class UsuarioCrud extends javax.swing.JPanel {
+public class UserDashboardView extends javax.swing.JPanel {
 
     public Usuario selectedUser;
     private List<Usuario> UsersList;
     
-    Dao userDao;
+    DaoInterface userDao;
 
     
     private void updateTableData() {
@@ -40,7 +43,7 @@ public class UsuarioCrud extends javax.swing.JPanel {
         modelo.setRowCount(0);
                 
         
-        userDao = new UsuarioDao();
+        userDao = new UserDao();
         
         
         try {
@@ -59,7 +62,7 @@ public class UsuarioCrud extends javax.swing.JPanel {
             }
            
         } catch (Exception ex) {
-            Logger.getLogger(UsuarioCrud.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserDashboardView.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
@@ -68,7 +71,7 @@ public class UsuarioCrud extends javax.swing.JPanel {
     /**
      * Creates new form UsuarioCrud
      */
-    public UsuarioCrud() {
+    public UserDashboardView() {
         initComponents();
         
         DefaultTableModel modelo = new DefaultTableModel(new Object [][] {},
@@ -245,7 +248,7 @@ public class UsuarioCrud extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddUserActionPerformed
-        UsuarioEditor newUser = new UsuarioEditor();
+        UserEditorView newUser = new UserEditorView();
         JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
 
         newUser.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -265,13 +268,13 @@ public class UsuarioCrud extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonAddUserActionPerformed
 
     private void jButtonDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteUserActionPerformed
-        UsuarioDao db = new UsuarioDao();
+        UserDao db = new UserDao();
         
         try {
             db.delete(selectedUser);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao deletar o usuario", "Erro", JOptionPane.ERROR_MESSAGE);
-            Logger.getLogger(UsuarioCrud.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserDashboardView.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         updateTableData();
@@ -293,7 +296,7 @@ public class UsuarioCrud extends javax.swing.JPanel {
                 selectedUser = result.get();
             }
         } catch (Exception ex) {
-            Logger.getLogger(UsuarioCrud.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UserDashboardView.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
@@ -307,7 +310,7 @@ public class UsuarioCrud extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonAddUser1ActionPerformed
 
     private void jButtonEditUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditUserActionPerformed
-        UsuarioEditor newUser = new UsuarioEditor(this.selectedUser);
+        UserEditorView newUser = new UserEditorView(this.selectedUser);
         JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
 
         newUser.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

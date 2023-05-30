@@ -37,6 +37,7 @@ public class DashboardUsuario extends javax.swing.JFrame {
         usuarioCrud4 = new padrinhodobem.UsuarioCrud();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
         jTabbedPane1.setToolTipText("");
         jTabbedPane1.addTab("Usuários", usuarioCrud1);

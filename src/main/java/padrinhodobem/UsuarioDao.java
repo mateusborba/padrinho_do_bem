@@ -48,15 +48,15 @@ public class UsuarioDao implements Dao<Usuario> {
     }
   }
 
-  public Optional<Usuario> getByEmail(String email) throws Exception {
+  public Optional<Usuario> getByCPF(String cpf) throws Exception {
 
-    String sql = "SELECT * FROM `usuario` WHERE email = ?";
+    String sql = "SELECT * FROM `usuario` WHERE cpf = ?";
 
     try (Connection conn = ConexaoDB.ObterConexao()) {
 
       PreparedStatement ps = conn.prepareStatement(sql);
 
-      ps.setString(1, email);
+      ps.setString(1, cpf);
       try (ResultSet rs = ps.executeQuery()) {
 
         rs.next();

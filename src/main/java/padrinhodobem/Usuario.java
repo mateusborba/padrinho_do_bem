@@ -5,22 +5,25 @@ public class Usuario {
     private String email;
     private String cpf;
     private String nome;
-    private String password;
+    private String senha;
+    private boolean userType;
     // adicionar o tipo
 
+        
     public Usuario(String email, String cpf, String nome, String password) {
         this.email = email;
         this.cpf = cpf;
         this.nome = nome;
-        this.password = password;
+        this.senha = password;
     }
 
-    public Usuario(int id, String email, String cpf, String nome, String password) {
+    public Usuario(int id, String email, String cpf, String nome, String password, boolean userType) {
         this.id = id;
         this.email = email;
         this.cpf = cpf;
         this.nome = nome;
-        this.password = password;
+        this.senha = password;
+        this.userType = userType;
     }
 
     public int getId() {
@@ -51,8 +54,16 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+    
+    public boolean getIsAdmin() {
+        return userType;
     }
 
     @Override

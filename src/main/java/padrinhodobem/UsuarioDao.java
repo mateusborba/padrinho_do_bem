@@ -7,6 +7,7 @@ package padrinhodobem;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -24,7 +25,7 @@ public class UsuarioDao implements Dao {
   @Override
   public Optional<Usuario> get(int id) throws Exception {
 
-    String sql = "SELECT * FROM `user` WHERE id = ?";
+    String sql = "SELECT * FROM `usuario` WHERE id = ?";
 
     try (Connection conn = ConexaoDB.ObterConexao()) {
 
@@ -40,14 +41,16 @@ public class UsuarioDao implements Dao {
             rs.getString("email"),
             rs.getString("cpf"),
             rs.getString("nome"),
-            rs.getString("senha")));
+            rs.getString("senha"),
+            rs.getBoolean("type")
+        ));
       }
     }
   }
 
   public Optional<Usuario> getByEmail(String email) throws Exception {
 
-    String sql = "SELECT * FROM `user` WHERE email = ?";
+    String sql = "SELECT * FROM `usuario` WHERE email = ?";
 
     try (Connection conn = ConexaoDB.ObterConexao()) {
 
@@ -63,7 +66,8 @@ public class UsuarioDao implements Dao {
             rs.getString("email"),
             rs.getString("cpf"),
             rs.getString("nome"),
-            rs.getString("senha")));
+            rs.getString("senha"),
+            rs.getBoolean("type")));
       } finally {
         conn.close();
       }
@@ -76,7 +80,7 @@ public class UsuarioDao implements Dao {
 
     List<Usuario> UsersList = new ArrayList<>();
 
-    String sql = "SELECT * FROM `usuarios`;";
+    String sql = "SELECT * FROM `usuario`;";
 
     try (Connection conn = ConexaoDB.ObterConexao()) {
 
@@ -90,17 +94,67 @@ public class UsuarioDao implements Dao {
             rs.getString("email"),
             rs.getString("cpf"),
             rs.getString("nome"),
-            rs.getString("password")));
+            rs.getString("senha"),
+            rs.getBoolean("type")
+        ));
       }
+    
+      System.out.println("Lista de usuarios: ");
+
+      System.out.println(UsersList);
 
       return UsersList;
     }
 
   }
 
-  @Override
-  public void save(Object t) {
-    throw new UnsupportedOperationException("Not supported yet.");
+    @Override
+    public void save(Object t) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+  
+  
+  
+    @Override
+    public void saver(Usuario t) throws Exception {
+    
+        String sql = "INSERT INTO `usuario`(cpf, nome, email, senha) VALUES (?,?,?,?);";
+     
+      
+        try (Connection conn = ConexaoDB.ObterConexao()) {
+
+            PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+      
+            ps.setString(1, t.getCpf());
+            ps.setString(2, t.getNome());
+            ps.setString(3, t.getEmail());
+            ps.setString(4, t.getSenha());
+
+
+
+
+            ResultSet rs = ps.executeQuery();
+
+      while (rs.next()) {
+        UsersList.add(new Usuario(
+            rs.getInt("id"),
+            rs.getString("email"),
+            rs.getString("cpf"),
+            rs.getString("nome"),
+            rs.getString("senha"),
+            rs.getBoolean("type")
+        ));
+      }
+    
+      System.out.println("Lista de usuarios: ");
+
+      System.out.println(UsersList);
+
+      return UsersList;
+    }
+      
+      
   }
 
   @Override

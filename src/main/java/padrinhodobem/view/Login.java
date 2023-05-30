@@ -222,10 +222,27 @@ public class Login extends javax.swing.JFrame {
         UserDao usuarioDao = new UserDao();
         
        try{
-       var response = usuarioDao.getByCPF(cpf_value);      
-       var usuarioSenha = response.get().validaSenha(senha_value);
-       if(usuarioSenha){
-       JOptionPane.showMessageDialog(null, "login realizado");}
+            var response = usuarioDao.getByCPF(cpf_value);  
+            
+            var usuarioSenha = response.get().validaSenha(senha_value);
+            
+            var usuarioTipo =  response.get().getIsAdmin();
+            
+            if(!usuarioSenha){
+            JOptionPane.showMessageDialog(null, "Não foi possível realizar o login", "Erro no login", JOptionPane.ERROR_MESSAGE);
+            }
+            
+            if(usuarioSenha && usuarioTipo){
+            JOptionPane.showMessageDialog(null, "login realizado");
+            AdminDashboard ds = new AdminDashboard();
+            ds.setVisible(true);
+            this.dispose();
+            }
+            
+            if(usuarioSenha && !usuarioTipo){
+            JOptionPane.showMessageDialog(null, "em desenvolvimento");
+            }
+ 
        }
        catch(Exception e) {
          JOptionPane.showMessageDialog(null, "Não foi possível realizar o login", "Erro no login", JOptionPane.ERROR_MESSAGE);

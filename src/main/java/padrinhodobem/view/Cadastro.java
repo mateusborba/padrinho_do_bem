@@ -19,8 +19,8 @@ import padrinhodobem.utils.ValidadorEmail;
  * @author mundo
  */
 public class Cadastro extends javax.swing.JFrame {
-    
-     private boolean passwordStatus = false;
+
+    private boolean passwordStatus = false;
 
     /**
      * Creates new form Login
@@ -36,7 +36,8 @@ public class Cadastro extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jTextField1 = new javax.swing.JTextField();
@@ -82,13 +83,19 @@ public class Cadastro extends javax.swing.JFrame {
         });
 
         inputNome.setBackground(new java.awt.Color(153, 153, 255));
-        inputNome.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        inputNome.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome",
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
         inputEmail.setBackground(new java.awt.Color(153, 153, 255));
-        inputEmail.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Email", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        inputEmail.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Email",
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
         inputCPF.setBackground(new java.awt.Color(153, 153, 255));
-        inputCPF.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CPF", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        inputCPF.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CPF",
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
         jPanelPassword.setBackground(new java.awt.Color(153, 153, 255));
         jPanelPassword.setLayout(new javax.swing.BoxLayout(jPanelPassword, javax.swing.BoxLayout.LINE_AXIS));
@@ -97,7 +104,9 @@ public class Cadastro extends javax.swing.JFrame {
         jPanelPassword.add(jPanelPassProgress);
 
         inputSenha.setBackground(new java.awt.Color(153, 153, 255));
-        inputSenha.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Senha", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        inputSenha.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Senha",
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
         inputSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inputSenhaActionPerformed(evt);
@@ -125,106 +134,125 @@ public class Cadastro extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tituloModal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(129, 129, 129)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(inputNome)
-                        .addComponent(inputCPF)
-                        .addComponent(inputEmail)
-                        .addComponent(jPanelPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(tituloModal, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(botaoCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(botaoSair, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jProgressBar1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(119, Short.MAX_VALUE))
-        );
+                                .addGap(129, 129, 129)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout
+                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(inputNome)
+                                                .addComponent(inputCPF)
+                                                .addComponent(inputEmail)
+                                                .addComponent(jPanelPassword,
+                                                        javax.swing.GroupLayout.Alignment.TRAILING,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE))
+                                        .addGroup(jPanel1Layout
+                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                        .addComponent(botaoCadastro,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 140,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(
+                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(botaoSair, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(jProgressBar1, javax.swing.GroupLayout.Alignment.LEADING,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 342,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(119, Short.MAX_VALUE)));
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(tituloModal, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
-                .addComponent(inputCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inputNome, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(inputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jPanelPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botaoCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoSair, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(88, Short.MAX_VALUE))
-        );
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(34, 34, 34)
+                                .addComponent(tituloModal, javax.swing.GroupLayout.PREFERRED_SIZE, 48,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(48, 48, 48)
+                                .addComponent(inputCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 61,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(inputNome, javax.swing.GroupLayout.PREFERRED_SIZE, 64,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(inputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 66,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addComponent(jPanelPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 71,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(39, 39, 39)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(botaoCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 45,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(botaoSair, javax.swing.GroupLayout.PREFERRED_SIZE, 45,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(88, Short.MAX_VALUE)));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void inputSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputSenhaActionPerformed
+    private void inputSenhaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_inputSenhaActionPerformed
         jProgressBar1.setValue(inputSenha.getPassword().length);
-    }//GEN-LAST:event_inputSenhaActionPerformed
+    }// GEN-LAST:event_inputSenhaActionPerformed
 
-    private void inputSenhaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputSenhaKeyTyped
+    private void inputSenhaKeyTyped(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_inputSenhaKeyTyped
         jProgressBar1.setValue(inputSenha.getPassword().length * 11);
-    }//GEN-LAST:event_inputSenhaKeyTyped
+    }// GEN-LAST:event_inputSenhaKeyTyped
 
-    private void botaoToggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoToggleActionPerformed
+    private void botaoToggleActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botaoToggleActionPerformed
         passwordStatus = !passwordStatus;
 
-        inputSenha.setEchoChar((passwordStatus)? (char)0 : '*');
+        inputSenha.setEchoChar((passwordStatus) ? (char) 0 : '*');
 
-    }//GEN-LAST:event_botaoToggleActionPerformed
+    }// GEN-LAST:event_botaoToggleActionPerformed
 
-    private void botaoSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSairActionPerformed
+    private void botaoSairActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_botaoSairActionPerformed
         this.dispose();
-    }//GEN-LAST:event_botaoSairActionPerformed
+    }// GEN-LAST:event_botaoSairActionPerformed
 
-    
-    private void botaoCadastroActionPerformed(java.awt.event.ActionEvent evt){
+    private void botaoCadastroActionPerformed(java.awt.event.ActionEvent evt) {
         String novaSenha = String.copyValueOf(this.inputSenha.getPassword());
-        String novoCpf = inputCPF.getText();
+        String novoCpf = ValidadorCPF.sanitizeCPF(inputCPF.getText());
         String novoNome = inputNome.getText();
         String novoEmail = inputEmail.getText();
-        
-        
+
         // ToDo: Validar o CPF, Email e Senha
-        if(! ValidadorCPF.validarCPF(novoCpf)){
-            JOptionPane.showMessageDialog(null,"CPF Invalido, verifique e tente novamente!", "Erro", JOptionPane.ERROR_MESSAGE);
+        if (!ValidadorCPF.validarCPF(novoCpf)) {
+            JOptionPane.showMessageDialog(null, "CPF Invalido, verifique e tente novamente!", "Erro",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
-        if(!ValidadorEmail.validarEmail(novoEmail)){
-            JOptionPane.showMessageDialog(null,"e-mail Invalido, verifique e tente novamente!", "Erro", JOptionPane.ERROR_MESSAGE);
+
+        if (!ValidadorEmail.validarEmail(novoEmail)) {
+            JOptionPane.showMessageDialog(null, "e-mail Invalido, verifique e tente novamente!", "Erro",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
-        if(novaSenha.length() < 5) {
-            JOptionPane.showMessageDialog(null,"Senha Invalida, tente uma senha mais segura !", "Erro", JOptionPane.ERROR_MESSAGE);
+
+        if (novaSenha.length() < 5) {
+            JOptionPane.showMessageDialog(null, "Senha Invalida, tente uma senha mais segura!", "Erro",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         Usuario novoUsuario = new Usuario(novoEmail, novoCpf, novoNome, novaSenha);
- 
-        UserDao db =  new UserDao();       
+
+        UserDao db = new UserDao();
         try {
             Login login = new Login();
             db.save(novoUsuario);
@@ -233,13 +261,14 @@ public class Cadastro extends javax.swing.JFrame {
             login.setVisible(true);
             this.dispose();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao salvar os dados do usuario no banco de dados!", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro ao salvar os dados do usuario no banco de dados!", "Erro",
+                    JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(UserEditorView.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         this.dispose();
     };
-    
+
     /**
      * @param args the command line arguments
      */

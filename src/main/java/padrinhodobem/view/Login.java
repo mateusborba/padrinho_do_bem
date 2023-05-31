@@ -54,8 +54,6 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(153, 153, 255));
-
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -82,8 +80,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        inputCPF.setBackground(new java.awt.Color(153, 153, 255));
-        inputCPF.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CPF", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        inputCPF.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "CPF", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
         inputCPF.setMargin(new java.awt.Insets(6, 6, 6, 6));
         inputCPF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,14 +88,12 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jPanelPassword.setBackground(new java.awt.Color(153, 153, 255));
-        jPanelPassword.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Senha", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanelPassword.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Senha", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanelPassword.setLayout(new javax.swing.BoxLayout(jPanelPassword, javax.swing.BoxLayout.LINE_AXIS));
 
         jPanelPassProgress.setBackground(new java.awt.Color(153, 153, 255));
         jPanelPassProgress.setLayout(new javax.swing.BoxLayout(jPanelPassProgress, javax.swing.BoxLayout.PAGE_AXIS));
 
-        inputSenha.setBackground(new java.awt.Color(153, 153, 255));
         inputSenha.setToolTipText("");
         inputSenha.setBorder(null);
         inputSenha.addActionListener(new java.awt.event.ActionListener() {
@@ -125,7 +120,6 @@ public class Login extends javax.swing.JFrame {
         jPanelPassword.add(botaoToggle);
 
         jProgressBar1.setForeground(new java.awt.Color(255, 102, 102));
-        jProgressBar1.setValue(70);
         jProgressBar1.setBorder(null);
         jProgressBar1.setBorderPainted(false);
         jProgressBar1.setMinimumSize(new java.awt.Dimension(10, 2));

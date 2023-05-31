@@ -4,17 +4,85 @@
  */
 package padrinhodobem.view.necessidade;
 
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import padrinhodobem.Dao.CriancaDao;
+import padrinhodobem.Dao.NecessidadeDao;
+import padrinhodobem.entity.Crianca;
+import padrinhodobem.entity.Necessidade;
+
 /**
  *
  * @author mundo
  */
 public class NecessidadeEditorView extends javax.swing.JFrame {
+    
+    private List<Crianca> listaCrianca;
+    
+    private Necessidade necessidade;
 
     /**
      * Creates new form NecessidadeEditorView
      */
     public NecessidadeEditorView() {
         initComponents();
+        CriancaDao criancaDb = new CriancaDao();
+        
+        try {
+            this.listaCrianca = criancaDb.getAll();
+            DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+            
+            for(Crianca elm : listaCrianca ){
+                modelo.addElement(elm.getNome());
+                inputCrianca.setModel(modelo);
+            }
+            
+        } catch (Exception ex) {
+            Logger.getLogger(NecessidadeEditorView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        this.setTitle("Nova necessidade");
+    }
+    
+    public NecessidadeEditorView(Necessidade necessidade) {
+        this.necessidade = necessidade;
+        initComponents();
+        this.setTitle("Editar necessidade");
+         
+         
+        CriancaDao criancaDb = new CriancaDao();
+        
+        try {
+            this.listaCrianca = criancaDb.getAll();
+            DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+            
+            for(Crianca elm : listaCrianca ){
+                modelo.addElement(elm.getNome());
+                inputCrianca.setModel(modelo);
+            }
+            
+        } catch (Exception ex) {
+            Logger.getLogger(NecessidadeEditorView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        this.setTitle("Nova necessidade");
+        
+        
+        for (int i = 0; i < listaCrianca.size(); i++) {
+            
+            var crianca = listaCrianca.get(i);
+            
+            if(crianca.getId() == necessidade.GetCriancaId()){
+                inputCrianca.setSelectedItem(crianca.getNome());
+                inputNecessidade.setSelectedItem(necessidade.getTipo());
+            }
+        }
+        
+        
     }
 
     /**
@@ -27,62 +95,85 @@ public class NecessidadeEditorView extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        botaoSalvar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        inputCrianca = new javax.swing.JComboBox<>();
+        inputNecessidade = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextField1.setBackground(new java.awt.Color(242, 242, 242));
-        jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome da necessidade", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
-
-        jButton1.setBackground(new java.awt.Color(242, 242, 242));
-        jButton1.setText("Salvar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        botaoSalvar.setBackground(new java.awt.Color(242, 242, 242));
+        botaoSalvar.setText("Salvar");
+        botaoSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                botaoSalvarActionPerformed(evt);
             }
         });
 
         jButton2.setBackground(new java.awt.Color(242, 242, 242));
         jButton2.setText("Sair");
 
+        inputCrianca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        inputNecessidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Educação", "Alimentação", "Lazer", "Vestuário" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(inputCrianca, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(15, Short.MAX_VALUE))
+                        .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 205, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(inputNecessidade, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(67, 67, 67))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
+                .addComponent(jLabel2)
+                .addGap(31, 31, 31)
+                .addComponent(inputCrianca, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(inputNecessidade, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15))
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
+        var index = inputCrianca.getSelectedIndex();
+        var necessidade_value = inputNecessidade.getSelectedItem().toString();
+        var criancaId = this.listaCrianca.get(index).getId();
+        
+        NecessidadeDao necessidadeDb = new NecessidadeDao();
+        
+        Necessidade nova_necessidade = new Necessidade(necessidade_value, criancaId);
+        
+        try {
+            necessidadeDb.save(nova_necessidade);
+            JOptionPane.showMessageDialog(null, "Dados salvos com sucesso!");
+            this.dispose();
+        }
+        catch(Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getLocalizedMessage());
+        }
+        
+    }//GEN-LAST:event_botaoSalvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -117,12 +208,15 @@ public class NecessidadeEditorView extends javax.swing.JFrame {
                 new NecessidadeEditorView().setVisible(true);
             }
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton botaoSalvar;
+    private javax.swing.JComboBox<String> inputCrianca;
+    private javax.swing.JComboBox<String> inputNecessidade;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

@@ -23,11 +23,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTabbedPane1" pref="786" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-          </Group>
+          <Component id="jTabbedPane1" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -56,11 +52,11 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="padrinhodobem.view.usuario.UserDashboardView" name="usuarioCrud2">
+        <Component class="padrinhodobem.view.crianca.CriancaDashboardView" name="criancaDashboardView1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Crian&#xe7;as">
-                <Property name="tabTitle" type="java.lang.String" value="Crian&#xe7;as"/>
+              <JTabbedPaneConstraints tabName="Crian&#xe7;a">
+                <Property name="tabTitle" type="java.lang.String" value="Crian&#xe7;a"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>

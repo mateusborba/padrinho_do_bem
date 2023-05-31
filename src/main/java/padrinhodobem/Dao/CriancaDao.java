@@ -75,7 +75,7 @@ public class CriancaDao implements DaoInterface<Crianca>{
     public void save(Crianca t) throws Exception {
         
         String createSql = "INSERT INTO `crianca`(nome, idade, historia, local) VALUES (?,?,?,?);";
-        String updateSql = "REPLACE INTO `usuario` (id, nome, idade, historia, local) VALUES (?,?,?,?,?)";
+        String updateSql = "REPLACE INTO `crianca` (id, nome, idade, historia, local) VALUES (?,?,?,?,?)";
      
       
         try (Connection conn = DbConnection.ObterConexao()) {
@@ -96,7 +96,7 @@ public class CriancaDao implements DaoInterface<Crianca>{
             ps.setInt(i++, t.getIdade());
             ps.setString(i++, t.getHistoria());
             ps.setString(i++, t.getLocal());
-            
+                        
             int affectedRows = ps.executeUpdate();
             
             if(currentId == 0){

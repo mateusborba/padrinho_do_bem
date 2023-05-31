@@ -32,7 +32,7 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         usuarioCrud1 = new padrinhodobem.view.usuario.UserDashboardView();
-        usuarioCrud2 = new padrinhodobem.view.usuario.UserDashboardView();
+        criancaDashboardView1 = new padrinhodobem.view.crianca.CriancaDashboardView();
         usuarioCrud3 = new padrinhodobem.view.usuario.UserDashboardView();
         usuarioCrud4 = new padrinhodobem.view.usuario.UserDashboardView();
 
@@ -40,7 +40,7 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         jTabbedPane1.setToolTipText("");
         jTabbedPane1.addTab("Usuários", usuarioCrud1);
-        jTabbedPane1.addTab("Crianças", usuarioCrud2);
+        jTabbedPane1.addTab("Criança", criancaDashboardView1);
         jTabbedPane1.addTab("Necessidades", usuarioCrud3);
         jTabbedPane1.addTab("Apadrinhamentos", usuarioCrud4);
 
@@ -48,10 +48,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,9 +97,9 @@ public class AdminDashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private padrinhodobem.view.crianca.CriancaDashboardView criancaDashboardView1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private padrinhodobem.view.usuario.UserDashboardView usuarioCrud1;
-    private padrinhodobem.view.usuario.UserDashboardView usuarioCrud2;
     private padrinhodobem.view.usuario.UserDashboardView usuarioCrud3;
     private padrinhodobem.view.usuario.UserDashboardView usuarioCrud4;
     // End of variables declaration//GEN-END:variables

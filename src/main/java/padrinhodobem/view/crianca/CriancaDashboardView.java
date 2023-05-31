@@ -4,8 +4,7 @@
  */
 package padrinhodobem.view.crianca;
 
-import padrinhodobem.view.usuario.*;
-import padrinhodobem.entity.Usuario;
+import padrinhodobem.entity.Crianca;
 import padrinhodobem.Dao.UserDao;
 import padrinhodobem.Dao.DaoInterface;
 import java.awt.event.WindowAdapter;
@@ -19,6 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+import padrinhodobem.Dao.CriancaDao;
 
 /**
  *
@@ -26,39 +26,37 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CriancaDashboardView extends javax.swing.JPanel {
 
-    public Usuario selectedUser;
-    private List<Usuario> UsersList;
+    public Crianca selectedCrianca;
     
-    DaoInterface userDao;
+    CriancaDao criancaDao;
 
     
     private void updateTableData() {
         
-        selectedUser = null;
+        selectedCrianca = null;
         
-        jButtonEditUser.setEnabled(this.selectedUser != null);
-        jButtonDeleteUser.setEnabled(this.selectedUser != null);
+        jButtonEdit.setEnabled(selectedCrianca != null);
+        jButtonDelete.setEnabled(selectedCrianca != null);
         
-        var modelo = ((DefaultTableModel) jTable_usuarios.getModel());
+        var modelo = ((DefaultTableModel) jTable_criancas.getModel());
         
         modelo.setRowCount(0);
                 
         
-        userDao = new UserDao();
+        criancaDao = new CriancaDao();
         
         
         try {
-           UsersList =  userDao.getAll();
+           var criancaList =  criancaDao.getAll();
             
-            for (int i = 0; i < UsersList.size(); i++) {
-                var usuario = UsersList.get(i);
+            for (int i = 0; i < criancaList.size(); i++) {
+                Crianca crianca = criancaList.get(i);
                 
                 modelo.addRow(new Object[]{
-                    usuario.getId(),
-                    usuario.getNome(),
-                    usuario.getCpf(),
-                    usuario.getEmail(), 
-                    usuario.getIsAdmin()? "Admin": "Padrinho"
+                    crianca.getId(),
+                    crianca.getNome(),
+                    crianca.getIdade(),
+                    crianca.getLocal()
                 });
             }
            
@@ -77,15 +75,15 @@ public class CriancaDashboardView extends javax.swing.JPanel {
         
         DefaultTableModel modelo = new DefaultTableModel(new Object [][] {},
             new String [] {
-                "ID", "Nome", "CPF", "E-mail", "Tipo de usuario"
+                "ID", "Nome", "Idade", "Local"
             }){
             
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
             
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
             
             public Class getColumnClass(int columnIndex) {
@@ -99,19 +97,13 @@ public class CriancaDashboardView extends javax.swing.JPanel {
             
         };
         
-        jTable_usuarios.setModel(modelo);
-        jTable_usuarios.getColumnModel().getColumn(0).setMaxWidth(100);
+        jTable_criancas.setModel(modelo);
+        jTable_criancas.getColumnModel().getColumn(0).setMaxWidth(100);        
+        jTable_criancas.getColumnModel().getColumn(2).setMaxWidth(100);
 
-
-        jTable_usuarios.doLayout();
-        
-        
-        for (int i = 0; i < 10; i++) {
-            modelo.addRow(new Object[]{i});
-        }
+        jTable_criancas.doLayout(); // ToDo Isso faz alguma coisa?
         
         updateTableData();
-        
         
     }
 
@@ -125,15 +117,15 @@ public class CriancaDashboardView extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable_usuarios = new javax.swing.JTable();
+        jTable_criancas = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jButtonAddUser = new javax.swing.JButton();
-        jButtonEditUser = new javax.swing.JButton();
-        jButtonDeleteUser = new javax.swing.JButton();
+        jButtonEdit = new javax.swing.JButton();
+        jButtonDelete = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jButtonAddUser1 = new javax.swing.JButton();
 
-        jTable_usuarios.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_criancas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -156,12 +148,12 @@ public class CriancaDashboardView extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jTable_usuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTable_criancas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable_usuariosMouseClicked(evt);
+                jTable_criancasMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable_usuarios);
+        jScrollPane1.setViewportView(jTable_criancas);
 
         jPanel1.setPreferredSize(new java.awt.Dimension(102, 200));
 
@@ -173,18 +165,18 @@ public class CriancaDashboardView extends javax.swing.JPanel {
             }
         });
 
-        jButtonEditUser.setText("Editar");
-        jButtonEditUser.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonEditUser.addActionListener(new java.awt.event.ActionListener() {
+        jButtonEdit.setText("Editar");
+        jButtonEdit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEditUserActionPerformed(evt);
+                jButtonEditActionPerformed(evt);
             }
         });
 
-        jButtonDeleteUser.setText("Deletar");
-        jButtonDeleteUser.addActionListener(new java.awt.event.ActionListener() {
+        jButtonDelete.setText("Deletar");
+        jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonDeleteUserActionPerformed(evt);
+                jButtonDeleteActionPerformed(evt);
             }
         });
 
@@ -205,8 +197,8 @@ public class CriancaDashboardView extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonAddUser, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-                    .addComponent(jButtonEditUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonDeleteUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonAddUser1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -220,9 +212,9 @@ public class CriancaDashboardView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonAddUser)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonEditUser)
+                .addComponent(jButtonEdit)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonDeleteUser)
+                .addComponent(jButtonDelete)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -249,95 +241,95 @@ public class CriancaDashboardView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddUserActionPerformed
-        UserEditorView newUser = new UserEditorView();
+        CriancaEditView editor = new CriancaEditView();
         JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
 
-        newUser.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        editor.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
-        newUser.addWindowListener(new WindowAdapter(){
+        editor.addWindowListener(new WindowAdapter(){
             public void windowClosed(WindowEvent e){
                 topFrame.setEnabled(true);
                 updateTableData();
             }
         });
         
-        newUser.setVisible(true);
-        newUser.requestFocus();
+        editor.setVisible(true);
+        editor.requestFocus();
         
         topFrame.setEnabled(false);
         
     }//GEN-LAST:event_jButtonAddUserActionPerformed
 
-    private void jButtonDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteUserActionPerformed
-        UserDao db = new UserDao();
+    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
+        CriancaDao db = new CriancaDao();
         
         try {
-            db.delete(selectedUser);
+            db.delete(selectedCrianca);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao deletar o usuario", "Erro", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(CriancaDashboardView.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         updateTableData();
-    }//GEN-LAST:event_jButtonDeleteUserActionPerformed
+    }//GEN-LAST:event_jButtonDeleteActionPerformed
 
-    private void jTable_usuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_usuariosMouseClicked
+    private void jTable_criancasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_criancasMouseClicked
         // TODO add your handling code here:
         
-//        System.out.println(jTable_usuarios.getSelectedRow() + 1);
+//        System.out.println(jTable_criancas.getSelectedRow() + 1);
         
-        int id = (int)jTable_usuarios.getValueAt(jTable_usuarios.getSelectedRow(), 0);
+        int id = (int)jTable_criancas.getValueAt(jTable_criancas.getSelectedRow(), 0);
         
         System.out.printf("\nid:\t%d",id);
         
         try {
-            Optional<Usuario> result = userDao.get(id);
+            var result = criancaDao.get(id);
             
             if(result.isPresent()){
-                selectedUser = result.get();
+                selectedCrianca = result.get();
             }
         } catch (Exception ex) {
             Logger.getLogger(CriancaDashboardView.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
-        jButtonEditUser.setEnabled(this.selectedUser != null);
-        jButtonDeleteUser.setEnabled(this.selectedUser != null);
+        jButtonEdit.setEnabled(selectedCrianca != null);
+        jButtonDelete.setEnabled(selectedCrianca != null);
 
-    }//GEN-LAST:event_jTable_usuariosMouseClicked
+    }//GEN-LAST:event_jTable_criancasMouseClicked
 
     private void jButtonAddUser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddUser1ActionPerformed
         updateTableData();
     }//GEN-LAST:event_jButtonAddUser1ActionPerformed
 
-    private void jButtonEditUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditUserActionPerformed
-        UserEditorView newUser = new UserEditorView(this.selectedUser);
+    private void jButtonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditActionPerformed
+        CriancaEditView editor = new CriancaEditView(selectedCrianca);
         JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
 
-        newUser.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        editor.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
-        newUser.addWindowListener(new WindowAdapter(){
+        editor.addWindowListener(new WindowAdapter(){
             public void windowClosed(WindowEvent e){
                 topFrame.setEnabled(true);
                 updateTableData();
             }
         });
         
-        newUser.setVisible(true);
-        newUser.requestFocus();
+        editor.setVisible(true);
+        editor.requestFocus();
         
         topFrame.setEnabled(false);
-    }//GEN-LAST:event_jButtonEditUserActionPerformed
+    }//GEN-LAST:event_jButtonEditActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAddUser;
     private javax.swing.JButton jButtonAddUser1;
-    private javax.swing.JButton jButtonDeleteUser;
-    private javax.swing.JButton jButtonEditUser;
+    private javax.swing.JButton jButtonDelete;
+    private javax.swing.JButton jButtonEdit;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable_usuarios;
+    private javax.swing.JTable jTable_criancas;
     // End of variables declaration//GEN-END:variables
 }

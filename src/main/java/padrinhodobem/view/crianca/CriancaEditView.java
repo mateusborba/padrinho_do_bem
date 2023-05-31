@@ -14,12 +14,26 @@ import padrinhodobem.entity.Crianca;
  * @author mundo
  */
 public class CriancaEditView extends javax.swing.JFrame {
-
+    
+    private Crianca crianca;
+    
     /**
      * Creates new form CriancaDashboard
      */
     public CriancaEditView() {
         initComponents();
+        this.setTitle("Nova criança");
+    }
+    
+    public CriancaEditView(Crianca crianca) {
+        this.crianca = crianca;
+        initComponents();
+        this.setTitle("Editar criança");
+        
+        inputNome.setText(crianca.getNome());
+        inputHistoria.setText(crianca.getHistoria());
+        inputEstado.setSelectedItem(crianca.getLocal());
+        inputIdade.setValue(crianca.getIdade());
     }
 
     /**
@@ -44,7 +58,7 @@ public class CriancaEditView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         inputNome.setBackground(new java.awt.Color(242, 242, 242));
-        inputNome.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
+        inputNome.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
         inputEstado.setBackground(new java.awt.Color(242, 242, 242));
         inputEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione um estado...", "Acre - AC", "Alagoas - AL", "Amapá - AP", "Amazonas - AM", "Bahia - BA", "Ceará - CE", "Distrito Federal  - DF", "Espírito Santo - ES", "Goiás - GO", "Maranhão - MA", "Mato Grosso - MT", "Mato Grosso do Sul - MS", "Minas Gerais - MG", "Pará - PA", "Paraíba - PB", "Paraná - PR", "Pernambuco - PE", "Piauí - PI", "Rio de Janeiro - RJ", "Rio Grande do Norte - RN", "Rio Grande do Sul - RS", "Rondônia - RO", "Roraima - RR", "Santa Catarina - SC", "São Paulo - SP", "Sergipe - SE", "Tocantins - TO" }));
@@ -61,7 +75,7 @@ public class CriancaEditView extends javax.swing.JFrame {
         inputHistoria.setBackground(new java.awt.Color(242, 242, 242));
         inputHistoria.setColumns(20);
         inputHistoria.setRows(5);
-        inputHistoria.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Biografia/História", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
+        inputHistoria.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Biografia/História", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
         jScrollPane1.setViewportView(inputHistoria);
 
         botaoSalvar.setBackground(new java.awt.Color(242, 242, 242));
@@ -74,9 +88,14 @@ public class CriancaEditView extends javax.swing.JFrame {
 
         botaoSair.setBackground(new java.awt.Color(242, 242, 242));
         botaoSair.setText("Sair");
+        botaoSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoSairActionPerformed(evt);
+            }
+        });
 
         inputIdade.setModel(new javax.swing.SpinnerNumberModel());
-        inputIdade.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "Idade", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
+        inputIdade.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Idade", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -140,10 +159,42 @@ public class CriancaEditView extends javax.swing.JFrame {
         var estado_value = inputEstado.getSelectedItem().toString();
         var historia_value = inputHistoria.getText();
         
-        Crianca crianca = new Crianca(nome_value, historia_value, estado_value,idade_value );
-        CriancaDao nova_crianca = new CriancaDao();
+        if(nome_value.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nome da criança é obrigatorio", "Erro",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if(idade_value <= 0 || idade_value >= 14) {
+            JOptionPane.showMessageDialog(null, "A idade da criança de ser entre 0 e 14 anos", "Erro",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if(estado_value == "Selecione um estado...") {
+            JOptionPane.showMessageDialog(null, "Obrigatorio selecionar um estado", "Erro",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if(historia_value.length() < 5) {
+            JOptionPane.showMessageDialog(null, "Descreva a historia da criança com detalhes", "Erro",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+                
+        if (this.crianca == null) {
+            this.crianca = new Crianca(nome_value, historia_value, estado_value, idade_value);
+        } else {
+            this.crianca.setNome(nome_value);
+            this.crianca.setLocal(estado_value);
+            this.crianca.setHistoria(historia_value);
+            this.crianca.setIdade(idade_value);
+        }
+        
+        CriancaDao dbCrianca = new CriancaDao();
         try{
-            nova_crianca.save(crianca);
+            dbCrianca.save(this.crianca);
             JOptionPane.showMessageDialog(null, "Dados salvo com sucesso!");
             this.dispose();
         }
@@ -152,6 +203,10 @@ public class CriancaEditView extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_botaoSalvarActionPerformed
+
+    private void botaoSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSairActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_botaoSairActionPerformed
 
     /**
      * @param args the command line arguments

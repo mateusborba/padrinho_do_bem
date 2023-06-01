@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -15,6 +16,7 @@ import javax.swing.JTextField;
 import padrinhodobem.Dao.CriancaDao;
 import padrinhodobem.entity.Crianca;
 import padrinhodobem.view.crianca.CriancaCard;
+import padrinhodobem.view.crianca.CriancaDashboardView;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -31,6 +33,27 @@ public class PadrinhoDashboard extends javax.swing.JFrame {
      */
     public PadrinhoDashboard() {  
         initComponents();
+        
+        var criancaDao = new CriancaDao();
+        
+        
+        try {
+           var criancaList = criancaDao.getAll();
+           int nCrianca = criancaList.size();
+           
+            jPanel2.setLayout(new java.awt.GridLayout(nCrianca / 3,  (nCrianca >= 3)? 3:nCrianca, 10, 10));
+            
+            for (int i = 0; i < criancaList.size(); i++) {
+                Crianca crianca = criancaList.get(i);
+                
+                var card = new CriancaCard(crianca);
+                jPanel2.add(card);
+            }
+           
+        } catch (Exception ex) {
+            Logger.getLogger(CriancaDashboardView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
 
@@ -46,7 +69,6 @@ public class PadrinhoDashboard extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
-        criancaCard1 = new padrinhodobem.view.crianca.CriancaCard();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -61,35 +83,22 @@ public class PadrinhoDashboard extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(criancaCard1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(449, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addComponent(criancaCard1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(281, Short.MAX_VALUE))
-        );
-
+        jPanel2.setMaximumSize(new java.awt.Dimension(930, 420));
+        jPanel2.setMinimumSize(new java.awt.Dimension(930, 420));
+        jPanel2.setPreferredSize(new java.awt.Dimension(930, 420));
+        jPanel2.setLayout(new java.awt.GridLayout(2, 2, 10, 10));
         jTabbedPane1.addTab("tab1", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1395, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jTabbedPane1)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -133,7 +142,6 @@ public class PadrinhoDashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private padrinhodobem.view.crianca.CriancaCard criancaCard1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTabbedPane jTabbedPane1;

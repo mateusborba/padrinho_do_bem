@@ -1,5 +1,7 @@
 package padrinhodobem.view;
 
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,7 +14,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import padrinhodobem.Dao.CriancaDao;
 import padrinhodobem.entity.Crianca;
-
+import padrinhodobem.view.crianca.CriancaCard;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -27,42 +29,10 @@ public class PadrinhoDashboard extends javax.swing.JFrame {
     /**
      * Creates new form PadrinhoDashboardView
      */
-    public PadrinhoDashboard() {        
+    public PadrinhoDashboard() {  
         initComponents();
-        Teste();
     }
     
-    public void Teste(){
-    CriancaDao criancaDb = new CriancaDao();
-      
-        try {
-            var listaCrianca = criancaDb.getAll();
-            
-            Container1.setLayout(new BoxLayout(Container1, BoxLayout.PAGE_AXIS));
-            
-            
-            for(int i = 0; i < listaCrianca.size(); i++){
-              Crianca novaCrianca = listaCrianca.get(i);
-              var criancaPanel = new JPanel();
-              criancaPanel.setLayout(new BoxLayout(criancaPanel, BoxLayout.PAGE_AXIS));
-              criancaPanel.setSize(50, 400);
-              var nome =  new JLabel(novaCrianca.getNome());
-              var historia = new JLabel(novaCrianca.getHistoria());
-              var local = new JLabel(novaCrianca.getLocal());
-              var idade = new JLabel(Integer.toString(novaCrianca.getIdade()));
-              
-              criancaPanel.add(nome);
-              criancaPanel.add(historia);
-              criancaPanel.add(local);
-              criancaPanel.add(idade);
-              Container1.add(criancaPanel);
-            }
-           
-
-        } catch (Exception ex) {
-            Logger.getLogger(PadrinhoDashboard.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -99,30 +69,19 @@ public class PadrinhoDashboard extends javax.swing.JFrame {
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-
-        javax.swing.GroupLayout Container1Layout = new javax.swing.GroupLayout(Container1);
-        Container1.setLayout(Container1Layout);
-        Container1Layout.setHorizontalGroup(
-            Container1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 845, Short.MAX_VALUE)
-        );
-        Container1Layout.setVerticalGroup(
-            Container1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 513, Short.MAX_VALUE)
-        );
-
+        Container1.setLayout(new java.awt.GridLayout(1000, 3));
         jTabbedPane1.addTab("Apadrinhar", Container1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 777, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jTabbedPane1)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

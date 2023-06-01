@@ -11,6 +11,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import padrinhodobem.view.Login;
+import padrinhodobem.view.PadrinhoDashboard;
 
 /**
  *
@@ -40,7 +41,6 @@ public class PadrinhoDoBem {
 //            System.out.println(e);
 //        }
 //        JOptionPane.showConfirmDialog(null, "oi");
-        
         Login lg = new Login();
         lg.setVisible(true);
 

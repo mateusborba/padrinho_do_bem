@@ -33,16 +33,16 @@ public class AdminDashboard extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         usuarioCrud1 = new padrinhodobem.view.usuario.UserDashboardView();
         criancaDashboardView1 = new padrinhodobem.view.crianca.CriancaDashboardView();
-        usuarioCrud4 = new padrinhodobem.view.usuario.UserDashboardView();
         necessidadeDashboardView1 = new padrinhodobem.view.necessidade.NecessidadeDashboardView();
+        usuarioCrud4 = new padrinhodobem.view.usuario.UserDashboardView();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTabbedPane1.setToolTipText("");
         jTabbedPane1.addTab("Usuários", usuarioCrud1);
         jTabbedPane1.addTab("Criança", criancaDashboardView1);
-        jTabbedPane1.addTab("Apadrinhamentos", usuarioCrud4);
         jTabbedPane1.addTab("Necessidade", necessidadeDashboardView1);
+        jTabbedPane1.addTab("Apadrinhamentos", usuarioCrud4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

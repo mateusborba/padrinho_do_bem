@@ -270,8 +270,9 @@ public class NecessidadeDashboardView extends javax.swing.JPanel {
         
         try {
             db.delete(selectedNecessidade);
+            JOptionPane.showMessageDialog(null, "Necessidade deletada com sucesso!");
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao deletar o usuario", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro ao deletar o necessidade!", "Erro", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(NecessidadeDashboardView.class.getName()).log(Level.SEVERE, null, ex);
         }
         

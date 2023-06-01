@@ -265,8 +265,9 @@ public class CriancaDashboardView extends javax.swing.JPanel {
         
         try {
             db.delete(selectedCrianca);
+            JOptionPane.showMessageDialog(null, "Criança deletada com sucesso!");
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao deletar o usuario", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro ao deletar a criança!", "Erro", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(CriancaDashboardView.class.getName()).log(Level.SEVERE, null, ex);
         }
         

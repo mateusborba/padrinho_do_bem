@@ -26,9 +26,9 @@ public class Apadrinhamento {
     private int necessidade_id;
     private int usuario_id;
 
-    public Apadrinhamento(int id, Date tempo, int duracao, int crianca_id, int necessidade_id, int usuario_id) {
+    public Apadrinhamento(int id, Instant data_inicio, int duracao, int crianca_id, int necessidade_id, int usuario_id) {
         this.id = id;
-        this.tempoInicio = tempo.toInstant();
+        this.tempoInicio = data_inicio;
         this.duration = duracao;
         this.crianca_id = crianca_id;
         this.necessidade_id = necessidade_id;
@@ -59,6 +59,13 @@ public class Apadrinhamento {
         return this.necessidade_id;
     }
 
+    public Instant getDataInicio() {
+        return tempoInicio;
+    }
+    
+    public int getDuracao(){
+        return this.duration;
+    }
     
     public String getTempoString() {
 

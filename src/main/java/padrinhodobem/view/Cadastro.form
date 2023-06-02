@@ -68,7 +68,7 @@
                       <Component id="inputNome" alignment="0" max="32767" attributes="0"/>
                       <Component id="inputCPF" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="138" max="32767" attributes="0"/>
+                  <EmptySpace pref="154" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -176,7 +176,7 @@
                               <Component id="botaoToggle" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="18" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -226,7 +226,7 @@
             <Component class="javax.swing.JButton" name="botaoToggle">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/padrinhodobem/icon/eye.png"/>
+                  <Image iconType="2" name="C:\Users\mundo\OneDrive\&#xc1;rea de Trabalho\a3\padrinho_do_bem\src\main\java\padrinhodobem\icon\eye.png"/>
                 </Property>
               </Properties>
               <Events>

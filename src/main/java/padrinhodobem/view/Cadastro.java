@@ -100,7 +100,7 @@ public class Cadastro extends javax.swing.JFrame {
             }
         });
 
-        botaoToggle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/padrinhodobem/icon/eye.png"))); // NOI18N
+        botaoToggle.setIcon(new javax.swing.ImageIcon("C:\\Users\\mundo\\OneDrive\\Área de Trabalho\\a3\\padrinho_do_bem\\src\\main\\java\\padrinhodobem\\icon\\eye.png")); // NOI18N
         botaoToggle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoToggleActionPerformed(evt);
@@ -123,7 +123,7 @@ public class Cadastro extends javax.swing.JFrame {
                         .addComponent(jPanelPassProgress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botaoToggle)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelPasswordLayout.setVerticalGroup(
             jPanelPasswordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,7 +156,7 @@ public class Cadastro extends javax.swing.JFrame {
                     .addComponent(inputEmail)
                     .addComponent(inputNome)
                     .addComponent(inputCPF))
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addContainerGap(154, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

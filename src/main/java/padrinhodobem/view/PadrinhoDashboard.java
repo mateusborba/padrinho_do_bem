@@ -41,7 +41,10 @@ public class PadrinhoDashboard extends javax.swing.JFrame {
            var criancaList = criancaDao.getAll();
            int nCrianca = criancaList.size();
            
-            jPanel2.setLayout(new java.awt.GridLayout(nCrianca / 3,  (nCrianca >= 3)? 3:nCrianca, 10, 10));
+           int cols = nCrianca >= 3 ? 3 : nCrianca;
+           int rows = Math.ceilDiv(nCrianca, 3);
+           
+            jPanel2.setLayout(new java.awt.GridLayout(rows, cols, 10, 10));
             
             for (int i = 0; i < criancaList.size(); i++) {
                 Crianca crianca = criancaList.get(i);

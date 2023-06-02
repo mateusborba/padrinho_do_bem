@@ -11,19 +11,23 @@ import padrinhodobem.entity.Crianca;
  * @author mundo
  */
 public class CriancaCard extends javax.swing.JPanel {
+    
+  public Crianca crianca;
 
     /**
      * Creates new form CriancaCard
      */
     public CriancaCard(Crianca crianca) {
         
+        this.crianca = crianca;
+        
         initComponents();
         
                 
-        labelNome.setText(crianca.getNome());
-        labelIdade.setText(String.valueOf(crianca.getIdade()));
-        labelLocal.setText(crianca.getLocal());
-    
+        labelNome.setText("Nome: " + crianca.getNome());
+        labelIdade.setText("Idade: " + String.valueOf(crianca.getIdade()));
+        labelLocal.setText("Local: " + crianca.getLocal());
+
     }
     
 
@@ -102,7 +106,11 @@ public class CriancaCard extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoDetalhesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDetalhesActionPerformed
-        // TODO add your handling code here:
+       
+       System.out.println(crianca);
+       CriancaDetalhe detalhe = new CriancaDetalhe(crianca);
+
+       detalhe.setVisible(true);
     }//GEN-LAST:event_botaoDetalhesActionPerformed
 
 

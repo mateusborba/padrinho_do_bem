@@ -79,7 +79,7 @@ public class Apadrinhamento {
         Instant novaInstant = novaData.atZone(ZONA_SP).toInstant();
         
         
-        return String.format("%s / %s", formatter.format(tempoInicio), formatter.format(novaInstant));
+        return String.format("%s - %s (%i %s)", formatter.format(tempoInicio), formatter.format(novaInstant), this.duration, (this.duration > 1)? "meses": "mes");
     }
 
 

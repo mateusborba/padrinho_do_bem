@@ -108,6 +108,38 @@ public class NecessidadeDao implements DaoInterface<Necessidade> {
 
   }
   
+  public List<Necessidade> getNecessidadeDisponiveis(Crianca c, Usuario u) throws Exception {
+
+    List<Necessidade> NecessidadeCriancaList = new ArrayList<>();
+
+    String sql = "SELECT * FROM `necessidade` ne \n" +
+        "left join apadrinhamento ap on ap.necessidade_id = ne.id\n" +
+        "where ne.crianca_id = ? and (ap.usuario_id is null or ap.usuario_id != ?);";
+
+    try (Connection conn = DbConnection.ObterConexao()) {
+
+      PreparedStatement ps = conn.prepareStatement(sql);
+      
+      ps.setInt(1, c.getId());      
+      ps.setInt(2, u.getId());
+
+
+      ResultSet rs = ps.executeQuery();
+
+
+      while (rs.next()) {
+        NecessidadeCriancaList.add(new Necessidade(
+                rs.getInt("id"),
+            rs.getString("tipo"),
+            rs.getInt("crianca_id")
+        )
+        );}
+
+
+      return NecessidadeCriancaList;
+    }
+
+  }
   
 
   @Override

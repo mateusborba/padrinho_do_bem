@@ -89,7 +89,6 @@ public class PadrinhoDashboard extends javax.swing.JFrame {
         jPanel2.setMaximumSize(new java.awt.Dimension(930, 420));
         jPanel2.setMinimumSize(new java.awt.Dimension(930, 420));
         jPanel2.setPreferredSize(new java.awt.Dimension(930, 420));
-        jPanel2.setLayout(new java.awt.GridLayout(2, 2, 10, 10));
         jTabbedPane1.addTab("tab1", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

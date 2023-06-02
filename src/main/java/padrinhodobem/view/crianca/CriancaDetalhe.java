@@ -4,29 +4,62 @@
  */
 package padrinhodobem.view.crianca;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import padrinhodobem.Dao.NecessidadeDao;
 import padrinhodobem.entity.Apadrinhamento;
 import padrinhodobem.entity.Crianca;
+import padrinhodobem.entity.Necessidade;
 
 /**
  *
  * @author mundo
  */
 public class CriancaDetalhe extends javax.swing.JFrame {
+    
+    public Crianca crianca;
 
     /**
      * Creates new form CriancaDetalhe
      */
     public CriancaDetalhe(Crianca crianca) {
-        
         initComponents();
         
-        labelNome.setText("Nome: " + crianca.getNome());
-        labelLocal.setText("Local: "  + crianca.getLocal());
-        labelIdade.setText("Idades: "+ Integer.toString(crianca.getIdade()) + " anos");
-        labelHistoria.setText(crianca.getHistoria());
-        labelHistoria.setEditable(false);
-        labelHistoria.setFocusable(false);
+        this.crianca = crianca;
+        
+        NecessidadeDao necessidadeDb = new NecessidadeDao();
+        
+        try {
+            var listaNecessidade = necessidadeDb.getNecessidadeCrianca(crianca);
+            System.out.println(listaNecessidade);
+            
+            DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
+            
+            for(Necessidade elm : listaNecessidade ){
+                modelo.addElement(elm.getTipo()); 
+            }
+            
+            System.out.println(modelo);
+            inputNecessidade.setModel( modelo);
+
+            labelNome.setText("Nome: " + crianca.getNome());
+            labelLocal.setText("Local: "  + crianca.getLocal());
+            labelIdade.setText("Idades: "+ Integer.toString(crianca.getIdade()) + " anos");
+            labelHistoria.setText(crianca.getHistoria());
+            labelHistoria.setEditable(false);
+            labelHistoria.setFocusable(false);
+        } catch (Exception ex) {
+            Logger.getLogger(CriancaDetalhe.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
   
     }
 
@@ -72,7 +105,6 @@ public class CriancaDetalhe extends javax.swing.JFrame {
             }
         });
 
-        inputNecessidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Educacao", "Vestuario" }));
         inputNecessidade.setBorder(javax.swing.BorderFactory.createTitledBorder("Necessidade"));
 
         inputMeses.setBorder(javax.swing.BorderFactory.createTitledBorder("Duração em meses"));
@@ -108,7 +140,7 @@ public class CriancaDetalhe extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(inputMeses, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(inputMeses, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(inputNecessidade, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
@@ -121,19 +153,12 @@ public class CriancaDetalhe extends javax.swing.JFrame {
 
     private void botaoApadrinharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoApadrinharActionPerformed
         var meses_value = Integer.parseInt(inputMeses.getValue().toString());
-        var necessidade_value = inputNecessidade.getSelectedItem().toString();
+       //var necessidade_value = inputNecessidade.getSelectedIndex();
         
         if(meses_value <= 0) {
             JOptionPane.showMessageDialog(null, "Selecione a quantidade de meses", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
-        
-        if(necessidade_value.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Selecione uma necessidade!", "Erro", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
         
         
     }//GEN-LAST:event_botaoApadrinharActionPerformed

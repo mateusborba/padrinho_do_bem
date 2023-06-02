@@ -100,10 +100,6 @@ public class UserDao implements DaoInterface<Usuario> {
             rs.getBoolean("type")));
       }
 
-      System.out.println("Lista de usuarios: ");
-
-      System.out.println(UsersList);
-
       return UsersList;
     }
 

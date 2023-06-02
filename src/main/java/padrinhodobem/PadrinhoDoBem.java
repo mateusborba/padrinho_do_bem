@@ -44,6 +44,5 @@ public class PadrinhoDoBem {
         Login lg = new Login();
         lg.setVisible(true);
 
-        System.out.println("Hello World!");
     }
 }

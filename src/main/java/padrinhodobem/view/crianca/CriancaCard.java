@@ -107,7 +107,6 @@ public class CriancaCard extends javax.swing.JPanel {
 
     private void botaoDetalhesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDetalhesActionPerformed
        
-       System.out.println(crianca);
        CriancaDetalhe detalhe = new CriancaDetalhe(crianca);
 
        detalhe.setVisible(true);

@@ -37,6 +37,7 @@ public class Necessidade {
     public void setCriancaId(int crianca_id) {
         this.crianca_id = crianca_id;
     }
+    
 
     @Override
     public String toString() {

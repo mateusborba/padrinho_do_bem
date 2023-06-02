@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import padrinhodobem.entity.Crianca;
 import padrinhodobem.entity.Necessidade;
 import padrinhodobem.entity.Usuario;
 
@@ -71,14 +72,43 @@ public class NecessidadeDao implements DaoInterface<Necessidade> {
         )
         );}
 
-      System.out.println("Lista de usuarios: ");
-
-      System.out.println(NecessidadeList);
 
       return NecessidadeList;
     }
 
   }
+  
+  
+  
+  public List<Necessidade> getNecessidadeCrianca(Crianca crianca) throws Exception {
+
+    List<Necessidade> NecessidadeCriancaList = new ArrayList<>();
+
+    String sql = "SELECT * FROM `necessidade` where crianca_id = ? ;";
+
+    try (Connection conn = DbConnection.ObterConexao()) {
+
+      PreparedStatement ps = conn.prepareStatement(sql);
+      
+      ps.setInt(1, crianca.getId());
+
+      ResultSet rs = ps.executeQuery();
+
+      while (rs.next()) {
+        NecessidadeCriancaList.add(new Necessidade(
+                rs.getInt("id"),
+            rs.getString("tipo"),
+            rs.getInt("crianca_id")
+        )
+        );}
+
+
+      return NecessidadeCriancaList;
+    }
+
+  }
+  
+  
 
   @Override
   public void save(Necessidade t) throws Exception {

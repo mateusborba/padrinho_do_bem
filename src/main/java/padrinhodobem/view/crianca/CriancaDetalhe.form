@@ -54,7 +54,7 @@
               <EmptySpace pref="30" max="32767" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="188" max="-2" attributes="0"/>
               <EmptySpace pref="30" max="32767" attributes="0"/>
-              <Component id="inputMeses" min="-2" pref="46" max="-2" attributes="0"/>
+              <Component id="inputMeses" min="-2" pref="70" max="-2" attributes="0"/>
               <EmptySpace pref="30" max="32767" attributes="0"/>
               <Component id="inputNecessidade" min="-2" pref="75" max="-2" attributes="0"/>
               <EmptySpace pref="36" max="32767" attributes="0"/>
@@ -121,10 +121,7 @@
     <Component class="javax.swing.JComboBox" name="inputNecessidade">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="2">
-            <StringItem index="0" value="Educacao"/>
-            <StringItem index="1" value="Vestuario"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">

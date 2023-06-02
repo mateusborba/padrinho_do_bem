@@ -156,7 +156,7 @@ public class UserEditorView extends javax.swing.JFrame {
         jPanelPassword.add(jPanelPassProgress);
         jPanelPassword.add(filler1);
 
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\mundo\\OneDrive\\Área de Trabalho\\a3\\padrinho_do_bem\\src\\main\\java\\padrinhodobem\\icon\\eye.png")); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\infra\\OneDrive\\Área de Trabalho\\A3\\padrinho_do_bem\\src\\main\\java\\padrinhodobem\\icon\\eye.png")); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -288,13 +288,15 @@ public class UserEditorView extends javax.swing.JFrame {
         UserDao db = new UserDao();
         try {
             db.save(this.user);
+            JOptionPane.showMessageDialog(null, "Dados salvo com sucesso!");
+            this.dispose();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao salvar os dados do usuario no banco de dados!", "Erro",
                     JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(UserEditorView.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        this.dispose();
+        
     }// GEN-LAST:event_jButtonSaveActionPerformed
 
     private void jPasswordField1KeyTyped(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jPasswordField1KeyTyped

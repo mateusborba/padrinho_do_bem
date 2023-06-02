@@ -43,8 +43,8 @@ public class Login extends javax.swing.JFrame {
         inputCPF = new javax.swing.JTextField();
         jPanelPassword = new javax.swing.JPanel();
         jPanelPassProgress = new javax.swing.JPanel();
-        inputSenha = new javax.swing.JPasswordField();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 32767));
+        inputSenha = new javax.swing.JPasswordField();
         botaoToggle = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
@@ -79,6 +79,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        inputCPF.setBackground(new java.awt.Color(60, 63, 65));
         inputCPF.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "CPF", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
         inputCPF.setMargin(new java.awt.Insets(6, 6, 6, 6));
         inputCPF.addActionListener(new java.awt.event.ActionListener() {
@@ -92,9 +93,11 @@ public class Login extends javax.swing.JFrame {
 
         jPanelPassProgress.setBackground(new java.awt.Color(153, 153, 255));
         jPanelPassProgress.setLayout(new javax.swing.BoxLayout(jPanelPassProgress, javax.swing.BoxLayout.PAGE_AXIS));
+        jPanelPassword.add(jPanelPassProgress);
+        jPanelPassword.add(filler1);
 
+        inputSenha.setBackground(new java.awt.Color(60, 63, 65));
         inputSenha.setToolTipText("");
-        inputSenha.setBorder(null);
         inputSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inputSenhaActionPerformed(evt);
@@ -105,12 +108,9 @@ public class Login extends javax.swing.JFrame {
                 inputSenhaKeyTyped(evt);
             }
         });
-        jPanelPassProgress.add(inputSenha);
+        jPanelPassword.add(inputSenha);
 
-        jPanelPassword.add(jPanelPassProgress);
-        jPanelPassword.add(filler1);
-
-        botaoToggle.setIcon(new javax.swing.ImageIcon("C:\\Users\\mundo\\OneDrive\\Área de Trabalho\\a3\\padrinho_do_bem\\src\\main\\java\\padrinhodobem\\icon\\eye.png")); // NOI18N
+        botaoToggle.setIcon(new javax.swing.ImageIcon("C:\\Users\\infra\\OneDrive\\Área de Trabalho\\A3\\padrinho_do_bem\\src\\main\\java\\padrinhodobem\\icon\\eye.png")); // NOI18N
         botaoToggle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoToggleActionPerformed(evt);

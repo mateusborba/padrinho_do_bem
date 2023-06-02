@@ -52,9 +52,18 @@ public class CriancaDetalhe extends javax.swing.JFrame {
                 modelo.addElement(elm.getTipo()); 
             }
             
-            System.out.println(modelo);
-            inputNecessidade.setModel( modelo);
-
+            System.out.println(this.listaNecessidade.size());
+            
+            if(this.listaNecessidade.size() <= 0) {
+                JOptionPane.showMessageDialog(null, "Esta criança não possui mais necessidades disponívels para apadrinhamento.");
+                return;
+            }
+            
+            else
+            {
+                inputNecessidade.setModel( modelo);
+            }
+            
             labelNome.setText("Nome: " + crianca.getNome());
             labelLocal.setText("Local: "  + crianca.getLocal());
             labelIdade.setText("Idades: "+ Integer.toString(crianca.getIdade()) + " anos");

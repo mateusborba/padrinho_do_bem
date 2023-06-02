@@ -70,7 +70,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="padrinhodobem.view.usuario.UserDashboardView" name="usuarioCrud4">
+        <Component class="padrinhodobem.view.apadrinhamento.ApadrinhamentoAdminDashboardView" name="apadrinhamentoAdminDashboardView1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Apadrinhamentos">

@@ -34,7 +34,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         usuarioCrud1 = new padrinhodobem.view.usuario.UserDashboardView();
         criancaDashboardView1 = new padrinhodobem.view.crianca.CriancaDashboardView();
         necessidadeDashboardView1 = new padrinhodobem.view.necessidade.NecessidadeDashboardView();
-        usuarioCrud4 = new padrinhodobem.view.usuario.UserDashboardView();
+        apadrinhamentoAdminDashboardView1 = new padrinhodobem.view.apadrinhamento.ApadrinhamentoAdminDashboardView();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,7 +42,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         jTabbedPane1.addTab("Usuários", usuarioCrud1);
         jTabbedPane1.addTab("Criança", criancaDashboardView1);
         jTabbedPane1.addTab("Necessidade", necessidadeDashboardView1);
-        jTabbedPane1.addTab("Apadrinhamentos", usuarioCrud4);
+        jTabbedPane1.addTab("Apadrinhamentos", apadrinhamentoAdminDashboardView1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -63,44 +63,13 @@ public class AdminDashboard extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AdminDashboard().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private padrinhodobem.view.apadrinhamento.ApadrinhamentoAdminDashboardView apadrinhamentoAdminDashboardView1;
     private padrinhodobem.view.crianca.CriancaDashboardView criancaDashboardView1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private padrinhodobem.view.necessidade.NecessidadeDashboardView necessidadeDashboardView1;
     private padrinhodobem.view.usuario.UserDashboardView usuarioCrud1;
-    private padrinhodobem.view.usuario.UserDashboardView usuarioCrud4;
     // End of variables declaration//GEN-END:variables
 }

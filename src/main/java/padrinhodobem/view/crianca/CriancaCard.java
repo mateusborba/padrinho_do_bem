@@ -5,6 +5,7 @@
 package padrinhodobem.view.crianca;
 
 import padrinhodobem.entity.Crianca;
+import padrinhodobem.entity.Usuario;
 
 /**
  *
@@ -12,14 +13,16 @@ import padrinhodobem.entity.Crianca;
  */
 public class CriancaCard extends javax.swing.JPanel {
     
-  public Crianca crianca;
+  private Usuario usuarioLogado;
+  private Crianca crianca;
 
     /**
      * Creates new form CriancaCard
      */
-    public CriancaCard(Crianca crianca) {
+    public CriancaCard(Crianca crianca, Usuario usuario) {
         
         this.crianca = crianca;
+        this.usuarioLogado = usuario;
         
         initComponents();
         
@@ -107,7 +110,7 @@ public class CriancaCard extends javax.swing.JPanel {
 
     private void botaoDetalhesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDetalhesActionPerformed
        
-       CriancaDetalhe detalhe = new CriancaDetalhe(crianca);
+       CriancaDetalhe detalhe = new CriancaDetalhe(crianca, usuarioLogado);
 
        detalhe.setVisible(true);
     }//GEN-LAST:event_botaoDetalhesActionPerformed

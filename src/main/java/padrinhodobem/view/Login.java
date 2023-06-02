@@ -222,7 +222,7 @@ public class Login extends javax.swing.JFrame {
             }
             
             if(usuarioSenha && !usuarioTipo){
-               PadrinhoDashboard ps = new PadrinhoDashboard();
+               PadrinhoDashboard ps = new PadrinhoDashboard(response.get());
                ps.setVisible(true);
                this.dispose();
             }

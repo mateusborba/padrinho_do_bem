@@ -4,6 +4,7 @@
  */
 package padrinhodobem.view.crianca;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -12,10 +13,13 @@ import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import padrinhodobem.Dao.ApadrinhamentoDao;
 import padrinhodobem.Dao.NecessidadeDao;
 import padrinhodobem.entity.Apadrinhamento;
 import padrinhodobem.entity.Crianca;
 import padrinhodobem.entity.Necessidade;
+import padrinhodobem.entity.Usuario;
+
 
 /**
  *
@@ -23,25 +27,28 @@ import padrinhodobem.entity.Necessidade;
  */
 public class CriancaDetalhe extends javax.swing.JFrame {
     
-    public Crianca crianca;
+    private Crianca crianca;
+    private Usuario usarioLogado;
+    private List<Necessidade> listaNecessidade;
 
     /**
      * Creates new form CriancaDetalhe
      */
-    public CriancaDetalhe(Crianca crianca) {
+    public CriancaDetalhe(Crianca crianca, Usuario usuario) {
         initComponents();
         
         this.crianca = crianca;
+        this.usarioLogado = usuario;
         
         NecessidadeDao necessidadeDb = new NecessidadeDao();
         
         try {
-            var listaNecessidade = necessidadeDb.getNecessidadeCrianca(crianca);
+            this.listaNecessidade = necessidadeDb.getNecessidadeCrianca(crianca);
             System.out.println(listaNecessidade);
             
             DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();
             
-            for(Necessidade elm : listaNecessidade ){
+            for(Necessidade elm : this.listaNecessidade ){
                 modelo.addElement(elm.getTipo()); 
             }
             
@@ -58,9 +65,6 @@ public class CriancaDetalhe extends javax.swing.JFrame {
             Logger.getLogger(CriancaDetalhe.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        
-        
-  
     }
 
     /**
@@ -107,6 +111,7 @@ public class CriancaDetalhe extends javax.swing.JFrame {
 
         inputNecessidade.setBorder(javax.swing.BorderFactory.createTitledBorder("Necessidade"));
 
+        inputMeses.setModel(new javax.swing.SpinnerNumberModel(1, 1, 12, 1));
         inputMeses.setBorder(javax.swing.BorderFactory.createTitledBorder("Duração em meses"));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -153,14 +158,44 @@ public class CriancaDetalhe extends javax.swing.JFrame {
 
     private void botaoApadrinharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoApadrinharActionPerformed
         var meses_value = Integer.parseInt(inputMeses.getValue().toString());
-       //var necessidade_value = inputNecessidade.getSelectedIndex();
+        var necessidade_value = inputNecessidade.getSelectedIndex();
+           
+       var idNecessidade =  this.listaNecessidade.get(necessidade_value);
         
-        if(meses_value <= 0) {
-            JOptionPane.showMessageDialog(null, "Selecione a quantidade de meses", "Erro", JOptionPane.ERROR_MESSAGE);
-            return;
+        Apadrinhamento apadrinhamento = new Apadrinhamento(crianca.getId(),idNecessidade.getId(),this.usarioLogado.getId(), meses_value );
+        
+        ApadrinhamentoDao apadrinhamentoDb = new ApadrinhamentoDao();
+        
+        try {
+            
+            if(meses_value <= 0 ) {
+                JOptionPane.showMessageDialog(null, "Selecione a quantidade de meses!", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            if(inputNecessidade.getSelectedItem().toString() == "") {
+                JOptionPane.showMessageDialog(null, "Selecione a necessidade", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            if(inputNecessidade.getSelectedItem().toString() == "") {
+                JOptionPane.showMessageDialog(null, "Selecione a necessidade", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            apadrinhamentoDb.save(apadrinhamento);
+            JOptionPane.showMessageDialog(null, "Apadrinhamento feito com sucesso!");
+            this.dispose();
         }
-        
-        
+        catch(SQLException ex){
+            if(ex.getErrorCode() == 1062) { 
+                JOptionPane.showMessageDialog(null, "Não é possível realizar o mesmo tipo de apadrinhamento pra uma criança duas vezes!", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Erro ao salvar os dados no banco!", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_botaoApadrinharActionPerformed
 
     /**

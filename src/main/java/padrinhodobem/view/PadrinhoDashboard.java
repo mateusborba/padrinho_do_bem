@@ -15,6 +15,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import padrinhodobem.Dao.CriancaDao;
 import padrinhodobem.entity.Crianca;
+import padrinhodobem.entity.Usuario;
 import padrinhodobem.view.crianca.CriancaCard;
 import padrinhodobem.view.crianca.CriancaDashboardView;
 /*
@@ -27,15 +28,18 @@ import padrinhodobem.view.crianca.CriancaDashboardView;
  * @author mundo
  */
 public class PadrinhoDashboard extends javax.swing.JFrame {
-
+    private Usuario usuarioLogado;
+    
     /**
      * Creates new form PadrinhoDashboardView
      */
-    public PadrinhoDashboard() {  
+    
+    public PadrinhoDashboard(Usuario usuario) {  
         initComponents();
         
-        var criancaDao = new CriancaDao();
+        this.usuarioLogado = usuario;
         
+        var criancaDao = new CriancaDao();
         
         try {
            var criancaList = criancaDao.getAll();
@@ -49,7 +53,7 @@ public class PadrinhoDashboard extends javax.swing.JFrame {
             for (int i = 0; i < criancaList.size(); i++) {
                 Crianca crianca = criancaList.get(i);
                 
-                var card = new CriancaCard(crianca);
+                var card = new CriancaCard(crianca, usuario);
                 jPanel2.add(card);
             }
            
@@ -72,6 +76,7 @@ public class PadrinhoDashboard extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
+        apadrinhamentoDashboardView1 = new padrinhodobem.view.apadrinhamento.ApadrinhamentoDashboardView();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -89,13 +94,14 @@ public class PadrinhoDashboard extends javax.swing.JFrame {
         jPanel2.setMaximumSize(new java.awt.Dimension(930, 420));
         jPanel2.setMinimumSize(new java.awt.Dimension(930, 420));
         jPanel2.setPreferredSize(new java.awt.Dimension(930, 420));
-        jTabbedPane1.addTab("tab1", jPanel2);
+        jTabbedPane1.addTab("Apadrinhar ", jPanel2);
+        jTabbedPane1.addTab("Meus apadrinhamentos", apadrinhamentoDashboardView1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1395, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,40 +116,10 @@ public class PadrinhoDashboard extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PadrinhoDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PadrinhoDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PadrinhoDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PadrinhoDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PadrinhoDashboard().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private padrinhodobem.view.apadrinhamento.ApadrinhamentoDashboardView apadrinhamentoDashboardView1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTabbedPane jTabbedPane1;

@@ -112,16 +112,18 @@ public class NecessidadeDao implements DaoInterface<Necessidade> {
 
     List<Necessidade> NecessidadeCriancaList = new ArrayList<>();
 
-    String sql = "SELECT * FROM `necessidade` ne \n" +
-        "left join apadrinhamento ap on ap.necessidade_id = ne.id\n" +
-        "where ne.crianca_id = ? and (ap.usuario_id is null or ap.usuario_id != ?);";
+//    String sql = "SELECT * FROM `necessidade` ne \n" +
+//        "left join apadrinhamento ap on ap.necessidade_id = ne.id\n" +
+//        "where ne.crianca_id = ? and (ap.usuario_id is null or ap.usuario_id != ?);";
+    
+    String sql = "SELECT * FROM `necessidade` ne left join apadrinhamento ap on ap.necessidade_id = ne.id and ap.crianca_id = ne.crianca_id and ap.usuario_id = ? where ne.crianca_id = ? and ap.usuario_id is null;";
 
     try (Connection conn = DbConnection.ObterConexao()) {
 
       PreparedStatement ps = conn.prepareStatement(sql);
       
-      ps.setInt(1, c.getId());      
-      ps.setInt(2, u.getId());
+      ps.setInt(2, c.getId());      
+      ps.setInt(1, u.getId());
 
 
       ResultSet rs = ps.executeQuery();

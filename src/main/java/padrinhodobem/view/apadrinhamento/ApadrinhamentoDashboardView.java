@@ -25,6 +25,7 @@ import padrinhodobem.Dao.CriancaDao;
 import padrinhodobem.Dao.NecessidadeDao;
 import padrinhodobem.entity.Apadrinhamento;
 import padrinhodobem.entity.Necessidade;
+import padrinhodobem.entity.Usuario;
 
 /**
  *
@@ -35,9 +36,10 @@ public class ApadrinhamentoDashboardView extends javax.swing.JPanel {
     public Apadrinhamento selectedApadrinhamento;
     
     ApadrinhamentoDao apadrinhamentoDao;
-
     
-    private void updateTableData() {
+    public Usuario usuarioLogado;
+    
+    public void updateTableData() {
         
         selectedApadrinhamento = null;
 
@@ -50,14 +52,13 @@ public class ApadrinhamentoDashboardView extends javax.swing.JPanel {
         apadrinhamentoDao = new ApadrinhamentoDao();
         
         CriancaDao criancaDb = new CriancaDao();
-       
-        
+        NecessidadeDao necessidadeDb = new NecessidadeDao();
+
         try {
-           var apadrinhamentoList =  apadrinhamentoDao.getAll();
+           var apadrinhamentoList =  apadrinhamentoDao.getApadrinhamentosUsuario(usuarioLogado);
             
-            for (int i = 0; i < apadrinhamentoList.size(); i++) {
-                Apadrinhamento apadrinhamento = apadrinhamentoList.get(i);
-                NecessidadeDao necessidadeDb = new NecessidadeDao();
+            for (Apadrinhamento apadrinhamento: apadrinhamentoList) {
+                
                 var crianca = criancaDb.get(apadrinhamento.getCriancaId()).get();
                 
                 var necessidade = necessidadeDb.get(apadrinhamento.getNecessidadeId()).get();
@@ -81,8 +82,10 @@ public class ApadrinhamentoDashboardView extends javax.swing.JPanel {
     /**
      * Creates new form UsuarioCrud
      */
-    public ApadrinhamentoDashboardView() {
+    public ApadrinhamentoDashboardView(Usuario usuario) {
         initComponents();
+        
+        this.usuarioLogado = usuario;
         
         DefaultTableModel modelo = new DefaultTableModel(new Object [][] {},
             new String [] {

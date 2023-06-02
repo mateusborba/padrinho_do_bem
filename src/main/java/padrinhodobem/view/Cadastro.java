@@ -255,7 +255,6 @@ public class Cadastro extends javax.swing.JFrame {
             Logger.getLogger(UserEditorView.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        this.dispose();
     };
 
     /**

@@ -43,7 +43,7 @@ public class CriancaDetalhe extends javax.swing.JFrame {
         NecessidadeDao necessidadeDb = new NecessidadeDao();
         
         try {
-            this.listaNecessidade = necessidadeDb.getNecessidadeCrianca(crianca);
+            this.listaNecessidade = necessidadeDb.getNecessidadeDisponiveis(crianca, usuario);
             System.out.println(listaNecessidade);
             
             DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();

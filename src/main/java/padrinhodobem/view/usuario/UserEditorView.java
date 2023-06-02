@@ -156,7 +156,7 @@ public class UserEditorView extends javax.swing.JFrame {
         jPanelPassword.add(jPanelPassProgress);
         jPanelPassword.add(filler1);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/padrinhodobem/icon/eye.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\mundo\\OneDrive\\Área de Trabalho\\a3\\padrinho_do_bem\\src\\main\\java\\padrinhodobem\\icon\\eye.png")); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

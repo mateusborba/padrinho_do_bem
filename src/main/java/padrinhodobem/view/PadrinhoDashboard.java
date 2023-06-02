@@ -35,9 +35,9 @@ public class PadrinhoDashboard extends javax.swing.JFrame {
      */
     
     public PadrinhoDashboard(Usuario usuario) {  
-        initComponents();
-        
         this.usuarioLogado = usuario;
+        
+        initComponents();
         
         var criancaDao = new CriancaDao();
         
@@ -64,6 +64,11 @@ public class PadrinhoDashboard extends javax.swing.JFrame {
     }
     
 
+    
+     
+    
+    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -76,7 +81,7 @@ public class PadrinhoDashboard extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
-        apadrinhamentoDashboardView1 = new padrinhodobem.view.apadrinhamento.ApadrinhamentoDashboardView();
+        apadrinhamentoDashboardView1 = new padrinhodobem.view.apadrinhamento.ApadrinhamentoDashboardView(this.usuarioLogado);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -91,10 +96,32 @@ public class PadrinhoDashboard extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane1StateChanged(evt);
+            }
+        });
+
         jPanel2.setMaximumSize(new java.awt.Dimension(930, 420));
         jPanel2.setMinimumSize(new java.awt.Dimension(930, 420));
         jPanel2.setPreferredSize(new java.awt.Dimension(930, 420));
         jTabbedPane1.addTab("Apadrinhar ", jPanel2);
+
+        apadrinhamentoDashboardView1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                apadrinhamentoDashboardView1FocusGained(evt);
+            }
+        });
+        apadrinhamentoDashboardView1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                apadrinhamentoDashboardView1MouseClicked(evt);
+            }
+        });
+        apadrinhamentoDashboardView1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                apadrinhamentoDashboardView1PropertyChange(evt);
+            }
+        });
         jTabbedPane1.addTab("Meus apadrinhamentos", apadrinhamentoDashboardView1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -112,6 +139,26 @@ public class PadrinhoDashboard extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void apadrinhamentoDashboardView1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_apadrinhamentoDashboardView1FocusGained
+        
+    }//GEN-LAST:event_apadrinhamentoDashboardView1FocusGained
+
+    private void apadrinhamentoDashboardView1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_apadrinhamentoDashboardView1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_apadrinhamentoDashboardView1MouseClicked
+
+    private void apadrinhamentoDashboardView1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_apadrinhamentoDashboardView1PropertyChange
+       apadrinhamentoDashboardView1.updateTableData();
+    }//GEN-LAST:event_apadrinhamentoDashboardView1PropertyChange
+
+    private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
+       var componente = jTabbedPane1.getSelectedComponent();
+       if(componente == apadrinhamentoDashboardView1){
+           apadrinhamentoDashboardView1.updateTableData();
+       }
+       return;
+    }//GEN-LAST:event_jTabbedPane1StateChanged
 
     /**
      * @param args the command line arguments
